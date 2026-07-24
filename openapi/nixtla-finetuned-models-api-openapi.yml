@@ -1,0 +1,185 @@
+openapi: 3.1.0
+info:
+  title: Nixtla Forecast Anomaly Detection Finetuned Models API
+  description: API for TimeGPT forecast. Just send your data as json and get results. We do the heavy lifting.
+  version: 0.2.8
+servers:
+- url: https://api.nixtla.io
+tags:
+- name: Finetuned Models
+paths:
+  /v2/finetuned_models:
+    get:
+      summary: List Fine-tuned Models
+      description: List all the finetuned models that you have created. The response contains a list with the IDs of the models that you have fine-tuned and are available to make forecasts.
+      operationId: v2_finetuned_models_v2_finetuned_models_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinetunedModelsOutput'
+      security:
+      - HTTPBearer: []
+      tags:
+      - Finetuned Models
+  /v2/finetuned_models/{finetuned_model_id}:
+    get:
+      summary: Get single Fine-tuned Model
+      description: Retrieve metadata for a previously fine-tuned model. The response contains the metadata of a model that you have fine-tuned and is available to make forecasts.
+      operationId: v2_finetuned_model_v2_finetuned_models__finetuned_model_id__get
+      parameters:
+      - name: finetuned_model_id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^[a-zA-Z0-9\-_]{1,36}$
+          title: Finetuned Model Id
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinetunedModel'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      tags:
+      - Finetuned Models
+    delete:
+      summary: Delete Fine-tuned Model
+      description: Delete a previously saved finetuned model. It takes the ID of the model that you want to delete as a path parameter.
+      operationId: v2_finetuned_models_delete_v2_finetuned_models__finetuned_model_id__delete
+      parameters:
+      - name: finetuned_model_id
+        in: path
+        required: true
+        schema:
+          type: string
+          pattern: ^[a-zA-Z0-9\-_]{1,36}$
+          title: Finetuned Model Id
+      responses:
+        '204':
+          description: Successful Response
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      tags:
+      - Finetuned Models
+components:
+  schemas:
+    FinetunedModelsOutput:
+      properties:
+        finetuned_models:
+          items:
+            $ref: '#/components/schemas/FinetunedModel'
+          type: array
+          title: Finetuned Models
+      type: object
+      required:
+      - finetuned_models
+      title: FinetunedModelsOutput
+    FinetunedModel:
+      properties:
+        id:
+          type: string
+          pattern: ^[a-zA-Z0-9\-_]{1,36}$
+          title: Id
+        created_at:
+          type: string
+          title: Created At
+        created_by:
+          type: string
+          title: Created By
+          default: user
+        base_model_id:
+          type: string
+          pattern: ^[a-zA-Z0-9\-_]{1,36}$
+          title: Base Model Id
+        steps:
+          type: integer
+          title: Steps
+        depth:
+          type: integer
+          title: Depth
+        loss:
+          type: string
+          enum:
+          - default
+          - mae
+          - mse
+          - rmse
+          - mape
+          - smape
+          - poisson
+          title: Loss
+        model:
+          type: string
+          title: Model
+        freq:
+          type: string
+          title: Freq
+      type: object
+      required:
+      - id
+      - created_at
+      - base_model_id
+      - steps
+      - depth
+      - loss
+      - model
+      - freq
+      title: FinetunedModel
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      description: HTTPBearer
+      scheme: bearer

@@ -1,0 +1,305 @@
+openapi: 3.1.0
+info:
+  title: Nixtla Forecast Anomaly Detection API
+  description: API for TimeGPT forecast. Just send your data as json and get results. We do the heavy lifting.
+  version: 0.2.8
+servers:
+- url: https://api.nixtla.io
+tags:
+- name: Anomaly Detection
+paths:
+  /v2/anomaly_detection:
+    post:
+      summary: Foundational Time Series Model Multi Series Anomaly Detector
+      description: Based on the provided data, this endpoint detects the anomalies in the historical perdiod of multiple time series at once. It takes a JSON as an input containing information like the series frequency and historical data. (See below for a full description of the parameters.) The response contains a flag indicating if the date has an anomaly and also provides the prediction interval used to define if an observation is an anomaly.Get your token at https://nixtla.io/free-trial?utm_source=nixtla.io&utm_campaign=/docs/api-reference.
+      operationId: v2_anomaly_detection_v2_anomaly_detection_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnomalyDetectionInput'
+              examples:
+              - freq: D
+                level: 90
+                series:
+                  sizes:
+                  - 35
+                  y:
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 0
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 6
+                  - 0
+                  - 1
+                  - 2
+                  - 10
+                  - 4
+                  - 5
+                  - 6
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnomalyDetectionOutput'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-fern-sdk-method-name: v2/anomaly_detection
+      tags:
+      - Anomaly Detection
+components:
+  schemas:
+    AnomalyDetectionOutput:
+      properties:
+        input_tokens:
+          type: integer
+          minimum: 0
+          title: Input Tokens
+        output_tokens:
+          type: integer
+          minimum: 0
+          title: Output Tokens
+        finetune_tokens:
+          type: integer
+          minimum: 0
+          title: Finetune Tokens
+        mean:
+          items:
+            type: number
+          type: array
+          title: Mean
+        sizes:
+          items:
+            type: integer
+          type: array
+          title: Sizes
+        intervals:
+          anyOf:
+          - additionalProperties:
+              items:
+                type: number
+              type: array
+            type: object
+          - type: 'null'
+          title: Intervals
+        weights_x:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Weights X
+        feature_contributions:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Feature Contributions
+        anomaly:
+          items:
+            type: boolean
+          type: array
+          title: Anomaly
+      type: object
+      required:
+      - input_tokens
+      - output_tokens
+      - finetune_tokens
+      - mean
+      - sizes
+      - anomaly
+      title: AnomalyDetectionOutput
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    SeriesWithFutureExogenous:
+      properties:
+        X_future:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X Future
+          description: Future values of the exogenous features. Each feature must be a list of size number of series times the forecast horizon (h).
+        X:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X
+          description: Historic values of the exogenous features. Each feature must be a list of the same size as the target (y).
+        categorical_exog:
+          anyOf:
+          - items:
+              type: integer
+              minimum: 0
+            type: array
+          - type: 'null'
+          title: Categorical Exog
+          description: Zero-based indices of the columns in X that are categorical features.
+        y:
+          items:
+            type: number
+          type: array
+          title: Y
+          description: Historic values of the target.
+        sizes:
+          items:
+            type: integer
+          type: array
+          title: Sizes
+          description: Sizes of the individual series.
+      type: object
+      required:
+      - y
+      - sizes
+      title: SeriesWithFutureExogenous
+    AnomalyDetectionInput:
+      properties:
+        series:
+          $ref: '#/components/schemas/SeriesWithFutureExogenous'
+        freq:
+          type: string
+          title: Freq
+          description: The frequency of the data represented as a string. 'D' for daily, 'M' for monthly, 'H' for hourly, and 'W' for weekly frequencies are available.
+        model:
+          type: string
+          title: Model
+          description: Model to use as a string. Common options are (but not restricted to) `timegpt-1` and `timegpt-1-long-horizon.` Full options vary by different users. Contact support@nixtla.io for more information. We recommend using `timegpt-1-long-horizon` for forecasting if you want to predict more than one seasonal period given the frequency of your data.
+          default: timegpt-1
+        clean_ex_first:
+          type: boolean
+          title: Clean Ex First
+          description: A boolean flag that indicates whether the API should preprocess (clean) the exogenous signal before applying the large time model. If True, the exogenous signal is cleaned; if False, the exogenous variables are applied after the large time model.
+          default: true
+        finetuned_model_id:
+          anyOf:
+          - type: string
+            pattern: ^[a-zA-Z0-9\-_]{1,36}$
+          - type: 'null'
+          title: Finetuned Model Id
+          description: ID of previously finetuned model
+        multivariate:
+          type: boolean
+          title: Multivariate
+          description: Compute multivariate predictions across a batch of multiple time series. Requires all time series with overlapping dates. Note that this is only effective for timegpt-2.1 model and it has no effect on the other models. By default, the value is set to False.
+          default: false
+        model_parameters:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Model Parameters
+          description: 'Optional dictionary of parameters to customize the behavior of the large time model. '
+        hist_exog:
+          anyOf:
+          - items:
+              type: integer
+              minimum: 0
+            type: array
+          - type: 'null'
+          title: Hist Exog
+          description: Zero-based indices of the exogenous features to treat as historical.
+        level:
+          anyOf:
+          - type: integer
+            exclusiveMaximum: 100
+            minimum: 0
+          - type: number
+            exclusiveMaximum: 100
+            minimum: 0
+          title: Level
+          description: 'Specifies the confidence level for the prediction interval used in anomaly detection. It is represented as a percentage between 0 and 100. For instance, a level of 95 indicates that the generated prediction interval captures the true future observation 95% of the time. Any observed values outside of this interval would be considered anomalies. A higher level leads to wider prediction intervals and potentially fewer detected anomalies, whereas a lower level results in narrower intervals and potentially more detected anomalies. Default: 99.'
+          default: 99
+        feature_contributions:
+          type: boolean
+          title: Feature Contributions
+          description: Compute the exogenous features contributions to the forecast.
+          default: false
+      type: object
+      required:
+      - series
+      - freq
+      title: AnomalyDetectionInput
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      description: HTTPBearer
+      scheme: bearer

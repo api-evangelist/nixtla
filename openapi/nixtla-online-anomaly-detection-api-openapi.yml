@@ -1,0 +1,657 @@
+openapi: 3.1.0
+info:
+  title: Nixtla Forecast Anomaly Detection Online Anomaly Detection API
+  description: API for TimeGPT forecast. Just send your data as json and get results. We do the heavy lifting.
+  version: 0.2.8
+servers:
+- url: https://api.nixtla.io
+tags:
+- name: Online Anomaly Detection
+paths:
+  /v2/online_anomaly_detection:
+    post:
+      summary: Foundational Time Series Model Online Multi Series Anomaly Detector
+      description: This endpoint performs online anomaly detection based on the provided data. It uses cross-validation for more robust detection of anomalies and it supports detection for univariate and multivariate scenarios. It takes a JSON as an input containing information like the series frequency and historical data. (See below for a full description of the parameters.) The response contains a flag indicating if the date has an anomaly, it provides the prediction interval used to define if an observation is an anomaly, and it reports the associated z-score for each point. Get your token at https://nixtla.io/free-trial?utm_source=nixtla.io&utm_campaign=/docs/api-reference.
+      operationId: v2_online_anomaly_detection_v2_online_anomaly_detection_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OnlineAnomalyInput'
+              examples:
+              - detection_size: 5
+                freq: W
+                h: 20
+                level: 99
+                series:
+                  sizes:
+                  - 320
+                  y:
+                  - 12
+                  - 12.99833416646828
+                  - 13.986693307950611
+                  - 14.955202066613396
+                  - 15.894183423086506
+                  - 16.794255386042032
+                  - 17.646424733950354
+                  - 18.442176872376912
+                  - 19.173560908995228
+                  - 19.833269096274833
+                  - 20.414709848078964
+                  - 20.912073600614356
+                  - 21.320390859672266
+                  - 21.63558185417193
+                  - 21.854497299884603
+                  - 21.974949866040546
+                  - 21.995736030415053
+                  - 21.916648104524686
+                  - 21.73847630878195
+                  - 21.463000876874144
+                  - 21.092974268256818
+                  - 20.632093666488736
+                  - 20.0849640381959
+                  - 19.457052121767198
+                  - 18.754631805511508
+                  - 17.984721441039564
+                  - 17.15501371821464
+                  - 16.2737988023383
+                  - 15.349881501559047
+                  - 14.39249329213982
+                  - 13.411200080598672
+                  - 12.415806624332905
+                  - 11.416258565724199
+                  - 10.422543058567513
+                  - 9.444588979731684
+                  - 8.492167723103801
+                  - 7.574795567051475
+                  - 6.701638590915066
+                  - 5.8814210905728075
+                  - 5.1223384081602585
+                  - 4.4319750469207175
+                  - 3.817228889355892
+                  - 3.284242275864118
+                  - 2.838340632505451
+                  - 2.4839792611048406
+                  - 2.22469882334903
+                  - 2.0630899636653552
+                  - 2.000767424358992
+                  - 2.038353911641595
+                  - 2.175473873756676
+                  - 2.4107572533686152
+                  - 2.741853176722678
+                  - 3.1654534427984693
+                  - 3.6773255777609926
+                  - 4.2723551244401285
+                  - 4.9445967442960805
+                  - 5.6873336212767915
+                  - 6.493144574023624
+                  - 7.353978205862434
+                  - 8.26123335169764
+                  - 9.205845018010741
+                  - 10.17837495727905
+                  - 11.169105971825037
+                  - 12.168139004843505
+                  - 13.165492048504937
+                  - 14.151199880878156
+                  - 15.115413635133788
+                  - 16.048499206165985
+                  - 16.94113351138609
+                  - 17.784397643882002
+                  - 18.56986598718789
+                  - 19.289690401258767
+                  - 19.936678638491532
+                  - 20.50436620628565
+                  - 20.98708095811627
+                  - 21.37999976774739
+                  - 21.679196720314863
+                  - 21.881682338770005
+                  - 21.985433453746047
+                  - 21.98941341839772
+                  - 21.893582466233816
+                  - 21.698898108450862
+                  - 21.407305566797724
+                  - 21.02171833756293
+                  - 20.545989080882805
+                  - 19.984871126234903
+                  - 19.343970978741133
+                  - 18.62969230082182
+                  - 17.849171928917617
+                  - 17.010208564578846
+                  - 16.121184852417567
+                  - 15.190983623493521
+                  - 14.22889914100246
+                  - 13.244544235070617
+                  - 12.247754254533577
+                  - 11.248488795381906
+                  - 10.256732187770186
+                  - 9.282393735890558
+                  - 8.335208707480717
+                  - 7.424641062246787
+                  - 6.559788891106303
+                  - 5.749293511071166
+                  - 5.001253124064563
+                  - 4.323141902364175
+                  - 3.7217353091434635
+                  - 3.2030424002833
+                  - 2.772245783871927
+                  - 2.433649837298116
+                  - 2.1906376993350847
+                  - 2.045637466936226
+                  - 2.000097934492965
+                  - 2.05447411796011
+                  - 2.208222708486831
+                  - 2.4598075009791103
+                  - 2.8067147433532433
+                  - 3.2454782531157154
+                  - 3.771714050312921
+                  - 4.380164160809679
+                  - 5.064749152228776
+                  - 5.818628877629667
+                  - 6.634270819995651
+                  - 7.503525354654001
+                  - 8.41770717763173
+                  - 9.36768208634199
+                  - 10.343958245516905
+                  - 11.336781026487992
+                  - 12.336230472211385
+                  - 13.33232041419944
+                  - 14.315098251015389
+                  - 15.274744391376931
+                  - 16.20167036826641
+                  - 17.086614643723752
+                  - 17.920735147072243
+                  - 18.695697621966023
+                  - 19.403758899524487
+                  - 20.03784426551621
+                  - 20.59161814856497
+                  - 21.059547423084627
+                  - 21.436956694441047
+                  - 21.72007501394976
+                  - 21.906073556948705
+                  - 21.993093887479176
+                  - 21.980266527163614
+                  - 21.86771964274613
+                  - 21.656577765492774
+                  - 21.34895055524683
+                  - 20.947911721405035
+                  - 20.457468311429334
+                  - 19.882520673753163
+                  - 19.22881349511976
+                  - 18.502878401571166
+                  - 17.71196869659987
+                  - 16.86398688853798
+                  - 15.96740573130612
+                  - 15.031183567457022
+                  - 14.064674819377966
+                  - 13.077536522994423
+                  - 12.079631837859356
+                  - 11.080931497723183
+                  - 10.091414186258106
+                  - 9.120966833349346
+                  - 8.179285828159909
+                  - 7.275780136015339
+                  - 6.4194772871322066
+                  - 5.618933176520498
+                  - 4.882146576308769
+                  - 4.216479214657015
+                  - 3.6285822198025315
+                  - 3.1243296641849536
+                  - 2.7087598726563034
+                  - 2.3860250812044317
+                  - 2.159349949183566
+                  - 2.0309993395840387
+                  - 2.002255689269889
+                  - 2.073406195293673
+                  - 2.243739945318424
+                  - 2.5115550208187596
+                  - 2.874175502088155
+                  - 3.3279782051441877
+                  - 3.8684288833851355
+                  - 4.490127532283239
+                  - 5.186862344445
+                  - 5.951671775937159
+                  - 6.776914103732684
+                  - 7.6543437792810645
+                  - 8.575193815303875
+                  - 9.530263382633791
+                  - 10.510009741858012
+                  - 11.504643591216325
+                  - 12.504226878068147
+                  - 13.498772096629523
+                  - 14.478342079829599
+                  - 15.433149288198987
+                  - 16.353653603728933
+                  - 17.230657651576994
+                  - 18.05539869719601
+                  - 18.819636200681355
+                  - 19.515734153521507
+                  - 20.136737375071053
+                  - 20.67644100641669
+                  - 21.129452507276277
+                  - 21.491245536478946
+                  - 21.758205177669765
+                  - 21.92766405835907
+                  - 21.99792900142669
+                  - 21.96829794278799
+                  - 21.83906694618616
+                  - 21.611527245021158
+                  - 21.287952340772407
+                  - 20.871575286923495
+                  - 20.36655638536056
+                  - 19.777941618010928
+                  - 19.1116122290598
+                  - 18.37422596150239
+                  - 17.573150535176584
+                  - 16.716390030941962
+                  - 15.8125049165494
+                  - 14.870526513277252
+                  - 13.899866757954378
+                  - 12.910224161998443
+                  - 11.911486907095961
+                  - 10.913634045759203
+                  - 9.926635793932377
+                  - 8.96035391188953
+                  - 8.024443168785638
+                  - 7.128254875394905
+                  - 6.280743448904362
+                  - 5.4903769433375045
+                  - 4.76505243955755
+                  - 4.112017140245813
+                  - 3.537795958248294
+                  - 3.0481263218031813
+                  - 2.647900848054597
+                  - 2.341118457639295
+                  - 2.1308444187935063
+                  - 2.0191797202060364
+                  - 2.007240078633723
+                  - 2.0951447910284404
+                  - 2.2820155425613677
+                  - 2.5659851824544564
+                  - 2.9442163799337617
+                  - 3.412929973900706
+                  - 3.967442733060473
+                  - 4.602214149221066
+                  - 5.310901796219784
+                  - 6.086424701348756
+                  - 6.921034096093779
+                  - 7.806390839267719
+                  - 8.733648738952777
+                  - 9.693542940726077
+                  - 10.67648249902227
+                  - 11.672646206691546
+                  - 12.672080725254785
+                  - 13.664800035371591
+                  - 14.64088521384473
+                  - 15.590583540221683
+                  - 16.50440594275389
+                  - 17.37322181006475
+                  - 18.188350221200395
+                  - 18.941646682522446
+                  - 19.625584504796027
+                  - 20.233330007380815
+                  - 20.75881079810891
+                  - 21.1967764466202
+                  - 21.542850944926982
+                  - 21.79357643103917
+                  - 21.94644773877838
+                  - 21.999937428570206
+                  - 21.95351104911559
+                  - 21.80763247745152
+                  - 21.56375928404503
+                  - 21.22432816923086
+                  - 20.792730616507228
+                  - 20.273279005953786
+                  - 19.67116352635528
+                  - 18.992400316550977
+                  - 18.243771354163915
+                  - 17.43275669232245
+                  - 16.567459721441928
+                  - 15.65652620282618
+                  - 14.70905788307869
+                  - 13.73452155245892
+                  - 12.742654455843578
+                  - 11.743367001394406
+                  - 10.746643739035674
+                  - 9.762443598132036
+                  - 8.80060038115802
+                  - 7.870724507594566
+                  - 6.982106989794258
+                  - 6.1436266002569955
+                  - 5.363661157870324
+                  - 4.650003819512223
+                  - 4.009785213403841
+                  - 3.4494021922292983
+                  - 2.9744539178981313
+                  - 2.589685916570465
+                  - 2.2989426629281464
+                  - 2.1051291674546437
+                  - 2.010181950530505
+                  - 2.0150496933618545
+                  - 2.119683759071382
+                  - 2.3230386786619484
+                  - 2.6230825969972003
+                  - 3.0168175744264527
+                  - 3.5003095412067378
+                  - 4.068727605427148
+                  - 4.716392321684066
+                  - 5.4368324382221225
+                  - 6.222849555542682
+                  - 7.066590050432248
+                  - 7.9596235467693495
+                  - 8.893027149056277
+                  - 9.857474597041158
+                  - 10.84332945062763
+                  - 11.840741373999018
+                  - 12.839744556917468
+                  - 13.83035728980588
+                  - 14.802681697690229
+                  - 30
+                  - 16.653884763549584
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OnlineAnomalyOutput'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-fern-sdk-method-name: v2/online_anomaly_detection
+      tags:
+      - Online Anomaly Detection
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    OnlineAnomalyOutput:
+      properties:
+        input_tokens:
+          type: integer
+          minimum: 0
+          title: Input Tokens
+        output_tokens:
+          type: integer
+          minimum: 0
+          title: Output Tokens
+        finetune_tokens:
+          type: integer
+          minimum: 0
+          title: Finetune Tokens
+        mean:
+          items:
+            type: number
+          type: array
+          title: Mean
+        sizes:
+          items:
+            type: integer
+          type: array
+          title: Sizes
+        idxs:
+          items:
+            type: integer
+          type: array
+          title: Idxs
+        anomaly:
+          items:
+            type: boolean
+          type: array
+          title: Anomaly
+        anomaly_score:
+          items:
+            type: number
+          type: array
+          title: Anomaly Score
+        accumulated_anomaly_score:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Accumulated Anomaly Score
+        intervals:
+          anyOf:
+          - additionalProperties:
+              items:
+                type: number
+              type: array
+            type: object
+          - type: 'null'
+          title: Intervals
+      type: object
+      required:
+      - input_tokens
+      - output_tokens
+      - finetune_tokens
+      - mean
+      - sizes
+      - idxs
+      - anomaly
+      - anomaly_score
+      title: OnlineAnomalyOutput
+    SeriesWithFutureExogenous:
+      properties:
+        X_future:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X Future
+          description: Future values of the exogenous features. Each feature must be a list of size number of series times the forecast horizon (h).
+        X:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X
+          description: Historic values of the exogenous features. Each feature must be a list of the same size as the target (y).
+        categorical_exog:
+          anyOf:
+          - items:
+              type: integer
+              minimum: 0
+            type: array
+          - type: 'null'
+          title: Categorical Exog
+          description: Zero-based indices of the columns in X that are categorical features.
+        y:
+          items:
+            type: number
+          type: array
+          title: Y
+          description: Historic values of the target.
+        sizes:
+          items:
+            type: integer
+          type: array
+          title: Sizes
+          description: Sizes of the individual series.
+      type: object
+      required:
+      - y
+      - sizes
+      title: SeriesWithFutureExogenous
+    OnlineAnomalyInput:
+      properties:
+        series:
+          $ref: '#/components/schemas/SeriesWithFutureExogenous'
+        freq:
+          type: string
+          title: Freq
+          description: The frequency of the data represented as a string. 'D' for daily, 'M' for monthly, 'H' for hourly, and 'W' for weekly frequencies are available.
+        detection_size:
+          type: integer
+          exclusiveMinimum: 0
+          title: Detection Size
+          description: Window over which to detect anomalies starting from the end of the series. This window is not considered when calculating the anomaly threshold to avoid bias from abnormal samples, unless there are less than 6 * detection_size forecasted samples.
+        threshold_method:
+          type: string
+          enum:
+          - univariate
+          - multivariate
+          title: Threshold Method
+          description: The thresholding method to detect anomalies
+          default: univariate
+        h:
+          type: integer
+          exclusiveMinimum: 0
+          title: H
+          description: The forecasting horizon. This represents the number of time steps into the future that the forecast should predict.
+        model:
+          type: string
+          title: Model
+          description: Model to use as a string. Common options are (but not restricted to) `timegpt-1` and `timegpt-1-long-horizon.` Full options vary by different users. Contact support@nixtla.io for more information. We recommend using `timegpt-1-long-horizon` for forecasting if you want to predict more than one seasonal period given the frequency of your data.
+          default: timegpt-1
+        clean_ex_first:
+          type: boolean
+          title: Clean Ex First
+          description: A boolean flag that indicates whether the API should preprocess (clean) the exogenous signal before applying the large time model. If True, the exogenous signal is cleaned; if False, the exogenous variables are applied after the large time model.
+          default: true
+        level:
+          anyOf:
+          - type: integer
+            exclusiveMaximum: 100
+            minimum: 0
+          - type: number
+            exclusiveMaximum: 100
+            minimum: 0
+          title: Level
+          description: 'Specifies the confidence level for the prediction interval used in anomaly detection. It is represented as a percentage between 0 and 100. For instance, a level of 95 indicates that the generated prediction interval captures the true future observation 95% of the time. Any observed values outside of this interval would be considered anomalies. A higher level leads to wider prediction intervals and potentially fewer detected anomalies, whereas a lower level results in narrower intervals and potentially more detected anomalies. Default: 99.'
+          default: 99
+        finetune_steps:
+          type: integer
+          minimum: 0
+          title: Finetune Steps
+          description: The number of tuning steps used to train the large time model on the data. Set this value to 0 for zero-shot inference, i.e., to make predictions without any further model tuning.
+          default: 0
+        finetune_loss:
+          type: string
+          enum:
+          - default
+          - mae
+          - mse
+          - rmse
+          - mape
+          - smape
+          - poisson
+          title: Finetune Loss
+          description: The loss used to train the large time model on the data. Select from ['default', 'mae', 'mse', 'rmse', 'mape', 'smape', 'poisson']. It will only be used if finetune_steps larger than 0. Default is a robust loss function that is less sensitive to outliers.
+          default: default
+        finetune_depth:
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          title: Finetune Depth
+          description: The depth of the finetuning. Uses a scale from 1 to 5, where 1 means little finetuning, and 5 means that the entire model is finetuned. Note that this parameter is only effective for timegpt-1 and timegpt-1-long-horizon models, meanwhile it has no effect on the other models. By default, the value is set to 1.
+          default: 1
+        finetuned_model_id:
+          anyOf:
+          - type: string
+            pattern: ^[a-zA-Z0-9\-_]{1,36}$
+          - type: 'null'
+          title: Finetuned Model Id
+          description: ID of previously finetuned model
+        step_size:
+          anyOf:
+          - type: integer
+            exclusiveMinimum: 0
+          - type: 'null'
+          title: Step Size
+          description: Step size between each cross validation window. If None it will be equal to the forecasting horizon.
+        hist_exog:
+          anyOf:
+          - items:
+              type: integer
+              minimum: 0
+            type: array
+          - type: 'null'
+          title: Hist Exog
+          description: Zero-based indices of the exogenous features to treat as historical.
+        refit:
+          type: boolean
+          title: Refit
+          description: Fine-tune the model in each window. If `False`, only fine-tunes on the first window. Only used if `finetune_steps` > 0.
+          default: true
+        multivariate:
+          type: boolean
+          title: Multivariate
+          description: Compute multivariate predictions across a batch of multiple time series. Requires all time series with overlapping dates. Note that this is only effective for timegpt-2.1 model and it has no effect on the other models. By default, the value is set to False.
+          default: false
+        model_parameters:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Model Parameters
+          description: 'Optional dictionary of parameters to customize the behavior of the large time model. '
+        feature_contributions:
+          type: boolean
+          title: Feature Contributions
+          description: Compute the exogenous features contributions to the forecast.
+          default: false
+      type: object
+      required:
+      - series
+      - freq
+      - detection_size
+      - h
+      title: OnlineAnomalyInput
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      description: HTTPBearer
+      scheme: bearer

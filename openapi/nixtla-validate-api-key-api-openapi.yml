@@ -1,0 +1,30 @@
+openapi: 3.1.0
+info:
+  title: Nixtla Forecast Anomaly Detection Validate Api Key API
+  description: API for TimeGPT forecast. Just send your data as json and get results. We do the heavy lifting.
+  version: 0.2.8
+servers:
+- url: https://api.nixtla.io
+tags:
+- name: Validate Api Key
+paths:
+  /validate_api_key:
+    get:
+      summary: Validate Api Key
+      operationId: validate_api_key_validate_api_key_get
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+      security:
+      - HTTPBearer: []
+      tags:
+      - Validate Api Key
+components:
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      description: HTTPBearer
+      scheme: bearer

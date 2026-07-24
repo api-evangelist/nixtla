@@ -1,0 +1,86 @@
+openapi: 3.1.0
+info:
+  title: Nixtla Forecast Anomaly Detection excluded API
+  description: API for TimeGPT forecast. Just send your data as json and get results. We do the heavy lifting.
+  version: 0.2.8
+servers:
+- url: https://api.nixtla.io
+tags:
+- name: excluded
+paths:
+  /model_params:
+    get:
+      tags:
+      - excluded
+      summary: Get Model Params
+      operationId: get_model_params_model_params_get
+      security:
+      - HTTPBearer: []
+      parameters:
+      - name: model
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Model
+      - name: freq
+        in: query
+        required: true
+        schema:
+          type: string
+          title: Freq
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema: {}
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      x-excluded: true
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      description: HTTPBearer
+      scheme: bearer

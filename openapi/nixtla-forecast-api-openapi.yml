@@ -1,0 +1,298 @@
+openapi: 3.1.0
+info:
+  title: Nixtla Anomaly Detection Forecast API
+  description: API for TimeGPT forecast. Just send your data as json and get results. We do the heavy lifting.
+  version: 0.2.8
+servers:
+- url: https://api.nixtla.io
+tags:
+- name: Forecast
+paths:
+  /v2/forecast:
+    post:
+      summary: Foundational Time Series Model Multi Series
+      description: Based on the provided data, this endpoint predicts the future values of multiple time series at once. It takes a JSON as an input containing information like the series frequency and historical data. (See below for a full description of the parameters.) The response contains the predicted values for each series based on the input arguments. Get your token at https://nixtla.io/free-trial?utm_source=nixtla.io&utm_campaign=/docs/api-reference.
+      operationId: v2_forecast_v2_forecast_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ForecastInput'
+              examples:
+              - freq: D
+                h: 2
+                series:
+                  sizes:
+                  - 5
+                  - 3
+                  y:
+                  - 1
+                  - 2
+                  - 3
+                  - 4
+                  - 5
+                  - 10
+                  - 20
+                  - 30
+        required: true
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForecastOutput'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+      security:
+      - HTTPBearer: []
+      x-fern-sdk-method-name: v2/forecast
+      tags:
+      - Forecast
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
+    ForecastInput:
+      properties:
+        series:
+          $ref: '#/components/schemas/SeriesWithFutureExogenous'
+        freq:
+          type: string
+          title: Freq
+          description: The frequency of the data represented as a string. 'D' for daily, 'M' for monthly, 'H' for hourly, and 'W' for weekly frequencies are available.
+        h:
+          type: integer
+          exclusiveMinimum: 0
+          title: H
+          description: The forecasting horizon. This represents the number of time steps into the future that the forecast should predict.
+        model:
+          type: string
+          title: Model
+          description: Model to use as a string. Common options are (but not restricted to) `timegpt-1` and `timegpt-1-long-horizon.` Full options vary by different users. Contact support@nixtla.io for more information. We recommend using `timegpt-1-long-horizon` for forecasting if you want to predict more than one seasonal period given the frequency of your data.
+          default: timegpt-1
+        clean_ex_first:
+          type: boolean
+          title: Clean Ex First
+          description: A boolean flag that indicates whether the API should preprocess (clean) the exogenous signal before applying the large time model. If True, the exogenous signal is cleaned; if False, the exogenous variables are applied after the large time model.
+          default: true
+        level:
+          anyOf:
+          - items:
+              anyOf:
+              - type: integer
+                exclusiveMaximum: 100
+                minimum: 0
+              - type: number
+                exclusiveMaximum: 100
+                minimum: 0
+            type: array
+            minItems: 1
+          - type: 'null'
+          title: Level
+          description: A list of values representing the prediction intervals. Each value is a percentage that indicates the level of certainty for the corresponding prediction interval. For example, [80, 90] defines 80% and 90% prediction intervals.
+        finetune_steps:
+          type: integer
+          minimum: 0
+          title: Finetune Steps
+          description: The number of tuning steps used to train the large time model on the data. Set this value to 0 for zero-shot inference, i.e., to make predictions without any further model tuning.
+          default: 0
+        finetune_loss:
+          type: string
+          enum:
+          - default
+          - mae
+          - mse
+          - rmse
+          - mape
+          - smape
+          - poisson
+          title: Finetune Loss
+          description: The loss used to train the large time model on the data. Select from ['default', 'mae', 'mse', 'rmse', 'mape', 'smape', 'poisson']. It will only be used if finetune_steps larger than 0. Default is a robust loss function that is less sensitive to outliers.
+          default: default
+        finetune_depth:
+          type: integer
+          enum:
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          title: Finetune Depth
+          description: The depth of the finetuning. Uses a scale from 1 to 5, where 1 means little finetuning, and 5 means that the entire model is finetuned. Note that this parameter is only effective for timegpt-1 and timegpt-1-long-horizon models, meanwhile it has no effect on the other models. By default, the value is set to 1.
+          default: 1
+        finetuned_model_id:
+          anyOf:
+          - type: string
+            pattern: ^[a-zA-Z0-9\-_]{1,36}$
+          - type: 'null'
+          title: Finetuned Model Id
+          description: ID of previously finetuned model
+        feature_contributions:
+          type: boolean
+          title: Feature Contributions
+          description: Compute the exogenous features contributions to the forecast.
+          default: false
+        multivariate:
+          type: boolean
+          title: Multivariate
+          description: Compute multivariate predictions across a batch of multiple time series. Requires all time series with overlapping dates. Note that this is only effective for timegpt-2.1 model and it has no effect on the other models. By default, the value is set to False.
+          default: false
+        model_parameters:
+          anyOf:
+          - additionalProperties: true
+            type: object
+          - type: 'null'
+          title: Model Parameters
+          description: 'Optional dictionary of parameters to customize the behavior of the large time model. '
+      type: object
+      required:
+      - series
+      - freq
+      - h
+      title: ForecastInput
+    SeriesWithFutureExogenous:
+      properties:
+        X_future:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X Future
+          description: Future values of the exogenous features. Each feature must be a list of size number of series times the forecast horizon (h).
+        X:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X
+          description: Historic values of the exogenous features. Each feature must be a list of the same size as the target (y).
+        categorical_exog:
+          anyOf:
+          - items:
+              type: integer
+              minimum: 0
+            type: array
+          - type: 'null'
+          title: Categorical Exog
+          description: Zero-based indices of the columns in X that are categorical features.
+        y:
+          items:
+            type: number
+          type: array
+          title: Y
+          description: Historic values of the target.
+        sizes:
+          items:
+            type: integer
+          type: array
+          title: Sizes
+          description: Sizes of the individual series.
+      type: object
+      required:
+      - y
+      - sizes
+      title: SeriesWithFutureExogenous
+    ForecastOutput:
+      properties:
+        input_tokens:
+          type: integer
+          minimum: 0
+          title: Input Tokens
+        output_tokens:
+          type: integer
+          minimum: 0
+          title: Output Tokens
+        finetune_tokens:
+          type: integer
+          minimum: 0
+          title: Finetune Tokens
+        mean:
+          items:
+            type: number
+          type: array
+          title: Mean
+        intervals:
+          anyOf:
+          - additionalProperties:
+              items:
+                type: number
+              type: array
+            type: object
+          - type: 'null'
+          title: Intervals
+        weights_x:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Weights X
+        feature_contributions:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Feature Contributions
+      type: object
+      required:
+      - input_tokens
+      - output_tokens
+      - finetune_tokens
+      - mean
+      title: ForecastOutput
+  securitySchemes:
+    HTTPBearer:
+      type: http
+      description: HTTPBearer
+      scheme: bearer
