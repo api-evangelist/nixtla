@@ -1,0 +1,30 @@
+generated: '2026-07-20'
+method: searched
+source: https://pypi.org/project/nixtla/
+packages:
+  - language: python
+    registry: pypi
+    name: nixtla
+    version: 0.7.4
+    url: https://pypi.org/project/nixtla/
+    install: pip install nixtla
+    repository: https://github.com/Nixtla/nixtla
+    official: true
+    description: Official Python SDK (NixtlaClient) for the Nixtla / TimeGPT forecasting and anomaly-detection API.
+  - language: python
+    registry: pypi
+    name: nixtlats
+    version: 0.5.2
+    url: https://pypi.org/project/nixtlats/
+    install: pip install nixtlats
+    official: true
+    deprecated: true
+    description: Legacy package name for the Nixtla Python SDK (superseded by the `nixtla` package).
+  - language: r
+    registry: cran
+    name: nixtlar
+    url: https://cran.r-project.org/package=nixtlar
+    install: install.packages("nixtlar")
+    repository: https://github.com/Nixtla/nixtlar
+    official: true
+    description: Official R SDK for Nixtla's TimeGPT.

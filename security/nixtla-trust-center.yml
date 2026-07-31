@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: searched
+probe: false
+url: https://trust.nixtla.io/
+certifications:
+  - SOC 2 Type II
+evidence:
+  - source: https://www.nixtla.io/llms.txt
+    claim: "SOC 2 Type II compliant"
+  - source: https://trust.nixtla.io/
+    kind: trust-center
+note: >-
+  trust.nixtla.io is a JavaScript trust-portal SPA (no static body to probe),
+  so the automated probe recorded no hit; the SOC 2 Type II claim is captured
+  here from Nixtla's own published llms.txt. Additional certifications, if any,
+  are gated behind the trust portal and were not enumerated.

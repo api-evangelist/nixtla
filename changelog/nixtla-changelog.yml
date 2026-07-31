@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/Nixtla/nixtla/blob/main/CHANGELOG.md
+scheme: semver
+subject: nixtla Python SDK (client for the Nixtla / TimeGPT API)
+api_version: 0.2.8
+note: >-
+  Nixtla publishes a dated release changelog for the `nixtla` Python SDK on
+  GitHub; the REST API itself is versioned via the /v2 URI path and the OpenAPI
+  info.version (0.2.8). Recent window captured below.
+entries:
+  - version: 0.6.6
+    breaking: false
+    highlights:
+      - Added `online_anomaly_detection` method with configurable `detection_size`.
+  - version: 0.6.5
+    breaking: false
+    highlights:
+      - Persist fine-tuned models for reuse across methods.
+      - Automatic zstd compression for requests over 1MB.
+      - Added `refit` argument to `cross_validation` for faster execution.
+  - version: 0.6.4
+    breaking: false
+    highlights:
+      - Support for integer timestamps and custom pandas frequencies.
+      - New `usage` method for API-call tracking.
+      - Historical exogenous variables in cross-validation.
+  - version: 0.6.0
+    breaking: false
+    highlights:
+      - Migrated to V2 API endpoints for lower latency.
+      - orjson serialization for improved performance.
+      - Feature-contribution outputs in forecasts.

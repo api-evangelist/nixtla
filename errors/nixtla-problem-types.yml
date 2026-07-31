@@ -1,0 +1,32 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nixtla-openapi-original.json
+format: json
+envelope: >-
+  Validation errors return FastAPI's HTTPValidationError shape:
+  {"detail": [{"loc": [...], "msg": "...", "type": "..."}]}. Content type is
+  application/json (not application/problem+json / RFC 9457).
+problems:
+  - status: 422
+    title: Validation Error
+    schema: HTTPValidationError
+    content_type: application/json
+    description: >-
+      Request body failed schema validation (bad frequency, malformed series,
+      missing required fields, etc.). Returned by all POST endpoints and the
+      fine-tuned-model path operations.
+    applies_to:
+      - v2_forecast_v2_forecast_post
+      - v2_anomaly_detection_v2_anomaly_detection_post
+      - v2_online_anomaly_detection_v2_online_anomaly_detection_post
+      - v2_cross_validation_v2_cross_validation_post
+      - v2_finetune_v2_finetune_post
+      - v2_finetuned_model_v2_finetuned_models__finetuned_model_id__get
+      - v2_finetuned_models_delete_v2_finetuned_models__finetuned_model_id__delete
+      - get_model_params_model_params_get
+notes: >-
+  The published OpenAPI (0.2.8) only enumerates 200/204 success and 422
+  validation responses. Authentication failures (401 on an invalid/expired API
+  key) and rate/usage errors are handled by the platform but are not modeled in
+  the spec; the /validate_api_key operation exists to check key validity before
+  a call. Not fabricated here beyond what the spec declares.

@@ -1,0 +1,24 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.nixtla.io/docs
+versioning:
+  scheme: uri-path
+  current: v2
+  docs: https://www.nixtla.io/docs/reference/sdk_reference
+  note: >-
+    REST paths are versioned in the URI (/v2/forecast, /v2/anomaly_detection,
+    ...). The SDK migrated to the V2 API endpoints in the 0.6.0 SDK release.
+    A TimeGPT-2 model family is served from the api-preview.nixtla.io host.
+status_page: https://status.nixtla.io/
+sla:
+  note: >-
+    SLAs are defined per Enterprise subscription plan (email/chat/phone/dedicated
+    support tiers); no single public uptime-target page is published.
+  docs: https://www.nixtla.io/docs/introduction/timegpt_subscription_plans
+deprecation:
+  policy_url: null
+  note: >-
+    No dedicated deprecation/Sunset-header policy page found. SDK release notes
+    have deprecated class/parameter names over time (TimeGPT->NixtlaClient,
+    token->api_key) but there is no published API deprecation policy.
+deprecated_operations: []

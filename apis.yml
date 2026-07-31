@@ -1,8 +1,31 @@
 aid: nixtla
 name: Nixtla
-description: Nixtla is a company surfaced as a portfolio company of techstars, true-ventures and added
-  to the API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment
-  pipeline.
+description: >-
+  Nixtla is an enterprise time-series intelligence platform built around TimeGPT,
+  the first foundation model for time series. Through a simple REST API and Python/R
+  SDKs it delivers zero-shot forecasting (no training data required), batch and
+  real-time anomaly detection, cross-validation, and fine-tuning of the foundation
+  model on customer data. The Nixtla Forecast API (OpenAPI 3.1) exposes /v2 endpoints
+  for forecasting, anomaly detection, online anomaly detection, cross-validation,
+  fine-tuning, and fine-tuned-model management, authenticated with a bearer API key.
+  Nixtla also maintains a widely used open-source forecasting ecosystem
+  (StatsForecast, NeuralForecast, MLForecast, HierarchicalForecast, CoreForecast)
+  with tens of millions of downloads, offers cloud, self-hosted, and air-gapped
+  deployments, ships MCP tools for agentic time-series workflows, and is SOC 2
+  Type II compliant. Nixtla is backed by Techstars and True Ventures.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.nixtla.io/logo.png
 url: https://raw.githubusercontent.com/api-evangelist/nixtla/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -13,15 +36,197 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Time Series
+- Forecasting
+- Anomaly Detection
+- Machine Learning
+- Artificial Intelligence
+- Foundation Model
+- Predictive Analytics
+- Data Science
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: nixtla:nixtla-anomaly-detection-api
+  name: Nixtla Anomaly Detection API
+  description: The Anomaly Detection API from Nixtla — 1 operation(s) for anomaly detection.
+  humanURL: https://www.nixtla.io/docs
+  baseURL: https://api.nixtla.io
+  tags:
+  - Anomaly Detection
+  properties:
+  - type: OpenAPI
+    url: openapi/nixtla-anomaly-detection-api-openapi.yml
+  - type: Documentation
+    url: https://www.nixtla.io/docs
+  - type: APIReference
+    url: https://www.nixtla.io/docs/api-reference/foundational-time-series-model-multi-series
+- aid: nixtla:nixtla-cross-validation-api
+  name: Nixtla Cross Validation API
+  description: The Cross Validation API from Nixtla — 1 operation(s) for cross validation.
+  humanURL: https://www.nixtla.io/docs
+  baseURL: https://api.nixtla.io
+  tags:
+  - Cross Validation
+  properties:
+  - type: OpenAPI
+    url: openapi/nixtla-cross-validation-api-openapi.yml
+  - type: Documentation
+    url: https://www.nixtla.io/docs
+  - type: APIReference
+    url: https://www.nixtla.io/docs/api-reference/foundational-time-series-model-multi-series
+- aid: nixtla:nixtla-excluded-api
+  name: Nixtla excluded API
+  description: The excluded API from Nixtla — 1 operation(s) for excluded.
+  humanURL: https://www.nixtla.io/docs
+  baseURL: https://api.nixtla.io
+  tags:
+  - excluded
+  properties:
+  - type: OpenAPI
+    url: openapi/nixtla-excluded-api-openapi.yml
+  - type: Documentation
+    url: https://www.nixtla.io/docs
+  - type: APIReference
+    url: https://www.nixtla.io/docs/api-reference/foundational-time-series-model-multi-series
+- aid: nixtla:nixtla-finetune-api
+  name: Nixtla Finetune API
+  description: The Finetune API from Nixtla — 1 operation(s) for finetune.
+  humanURL: https://www.nixtla.io/docs
+  baseURL: https://api.nixtla.io
+  tags:
+  - Finetune
+  properties:
+  - type: OpenAPI
+    url: openapi/nixtla-finetune-api-openapi.yml
+  - type: Documentation
+    url: https://www.nixtla.io/docs
+  - type: APIReference
+    url: https://www.nixtla.io/docs/api-reference/foundational-time-series-model-multi-series
+- aid: nixtla:nixtla-finetuned-models-api
+  name: Nixtla Finetuned Models API
+  description: The Finetuned Models API from Nixtla — 2 operation(s) for finetuned models.
+  humanURL: https://www.nixtla.io/docs
+  baseURL: https://api.nixtla.io
+  tags:
+  - Finetuned Models
+  properties:
+  - type: OpenAPI
+    url: openapi/nixtla-finetuned-models-api-openapi.yml
+  - type: Documentation
+    url: https://www.nixtla.io/docs
+  - type: APIReference
+    url: https://www.nixtla.io/docs/api-reference/foundational-time-series-model-multi-series
+- aid: nixtla:nixtla-forecast-api
+  name: Nixtla Forecast API
+  description: The Forecast API from Nixtla — 1 operation(s) for forecast.
+  humanURL: https://www.nixtla.io/docs
+  baseURL: https://api.nixtla.io
+  tags:
+  - Forecast
+  properties:
+  - type: OpenAPI
+    url: openapi/nixtla-forecast-api-openapi.yml
+  - type: Documentation
+    url: https://www.nixtla.io/docs
+  - type: APIReference
+    url: https://www.nixtla.io/docs/api-reference/foundational-time-series-model-multi-series
+- aid: nixtla:nixtla-online-anomaly-detection-api
+  name: Nixtla Online Anomaly Detection API
+  description: >-
+    The Online Anomaly Detection API from Nixtla — 1 operation(s) for online anomaly detection.
+  humanURL: https://www.nixtla.io/docs
+  baseURL: https://api.nixtla.io
+  tags:
+  - Online Anomaly Detection
+  properties:
+  - type: OpenAPI
+    url: openapi/nixtla-online-anomaly-detection-api-openapi.yml
+  - type: Documentation
+    url: https://www.nixtla.io/docs
+  - type: APIReference
+    url: https://www.nixtla.io/docs/api-reference/foundational-time-series-model-multi-series
+- aid: nixtla:nixtla-validate-api-key-api
+  name: Nixtla Validate Api Key API
+  description: The Validate Api Key API from Nixtla — 1 operation(s) for validate api key.
+  humanURL: https://www.nixtla.io/docs
+  baseURL: https://api.nixtla.io
+  tags:
+  - Validate Api Key
+  properties:
+  - type: OpenAPI
+    url: openapi/nixtla-validate-api-key-api-openapi.yml
+  - type: Documentation
+    url: https://www.nixtla.io/docs
+  - type: APIReference
+    url: https://www.nixtla.io/docs/api-reference/foundational-time-series-model-multi-series
 common:
+- type: DeveloperPortal
+  url: https://www.nixtla.io/docs
+- type: Documentation
+  url: https://www.nixtla.io/docs
+- type: APIReference
+  url: https://www.nixtla.io/docs/api-reference/foundational-time-series-model-multi-series
+- type: GettingStarted
+  url: https://www.nixtla.io/docs/forecasting/timegpt_quickstart
+- type: SDKs
+  url: packages/nixtla-packages.yml
+- type: Packages
+  url: packages/nixtla-packages.yml
+- type: Authentication
+  url: authentication/nixtla-authentication.yml
+- type: Conventions
+  url: conventions/nixtla-conventions.yml
+- type: ErrorCatalog
+  url: errors/nixtla-problem-types.yml
+- type: DataModel
+  url: data-model/nixtla-data-model.yml
+- type: Lifecycle
+  url: lifecycle/nixtla-lifecycle.yml
+- type: StatusPage
+  url: https://status.nixtla.io/
+- type: ChangeLog
+  url: changelog/nixtla-changelog.yml
+- type: MCPServer
+  url: mcp/nixtla-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/nixtla-agentic-access.yml
+- type: LLMsTxt
+  url: llms/nixtla-llms.txt
+- type: Conformance
+  url: conformance/nixtla-conformance.yml
+- type: Compliance
+  url: https://trust.nixtla.io/
+- type: TrustCenter
+  url: security/nixtla-trust-center.yml
+- type: DomainSecurity
+  url: security/nixtla-domain-security.yml
+- type: GitHubOrganization
+  url: https://github.com/Nixtla
+- type: Blog
+  url: https://www.nixtla.io/blog
+- type: Pricing
+  url: https://www.nixtla.io/docs/introduction/timegpt_subscription_plans
+- type: SignUp
+  url: https://nixtla.io/free-trial
+- type: Support
+  url: https://www.nixtla.io/docs
+- type: TermsOfService
+  url: https://www.nixtla.io/docs/about/terms-and-conditions
+- type: PrivacyPolicy
+  url: https://www.nixtla.io/docs/about/privacy-notice
 - type: Website
   url: https://nixtla.io/
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 17
+  pass: local-v1

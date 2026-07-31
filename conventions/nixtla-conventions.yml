@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: searched
+source: https://www.nixtla.io/docs
+authentication:
+  style: bearer-api-key
+  header: 'Authorization: Bearer <NIXTLA_API_KEY>'
+  env_var: NIXTLA_API_KEY
+  base_url_env: NIXTLA_BASE_URL
+  docs: https://www.nixtla.io/docs/setup/setting_up_your_api_key
+  ref: authentication/nixtla-authentication.yml
+base_url:
+  production: https://api.nixtla.io
+  preview: https://api-preview.nixtla.io
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key header or parameter is documented; forecasting/anomaly
+    calls are computed request/response and carry no client-supplied idempotency
+    key. Fine-tune create returns a server-generated model id.
+pagination:
+  supported: false
+  note: >-
+    Batch request/response over the series payload; list operations
+    (/v2/finetuned_models) return the full set without cursor/offset paging.
+versioning:
+  style: uri-path
+  current: v2
+  ref: lifecycle/nixtla-lifecycle.yml
+request_headers:
+  - name: Authorization
+    purpose: Bearer API key
+  - name: nixtla-model
+    purpose: Select the model to run (e.g. timegpt-1, timegpt-1-long-horizon, azureai).
+  - name: nixtla-client-version
+    purpose: SDK version reported by the client.
+compression:
+  note: The SDK applies zstd compression automatically for request bodies over 1MB (SDK >= 0.6.5).
+serialization:
+  request: application/json
+  note: SDK uses orjson for fast JSON serialization (SDK >= 0.6.0).
+error_envelope:
+  shape: 'FastAPI HTTPValidationError ({"detail": [{loc, msg, type}]})'
+  content_type: application/json
+  ref: errors/nixtla-problem-types.yml
+rate_limits:
+  note: >-
+    API-call and usage limits are governed per subscription plan; a `usage`
+    method (SDK >= 0.6.4) reports API-call consumption. No public numeric
+    rate-limit table is published.

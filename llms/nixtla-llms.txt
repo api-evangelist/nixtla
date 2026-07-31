@@ -1,0 +1,75 @@
+# Nixtla — AI-Powered Time Series Forecasting & Anomaly Detection
+> https://www.nixtla.io
+
+Nixtla is an enterprise-grade time series intelligence platform. We provide TimeGPT, the first foundation model for time series, enabling zero-shot forecasting, anomaly detection, and demand prediction without training data. Trusted by Microsoft, Lyft, Prudential, Decathlon, and leading enterprises worldwide.
+
+## Products
+
+### TimeGPT
+The first foundation model for time series forecasting. Zero-shot predictions, anomaly detection, and demand forecasting via a simple API. No training data required.
+- Zero-shot forecasting (no training needed)
+- Anomaly detection at scale
+- Multi-horizon predictions with conformal intervals
+- Exogenous variables support
+- Fine-tuning on custom data
+- SOC 2 Type II compliant
+https://www.nixtla.io/
+
+### TimeGPT-2
+Next generation foundation model with improved accuracy and expanded capabilities for time series analysis.
+https://www.nixtla.io/timegpt-2-waitlist
+
+### Open Source Ecosystem (49M+ downloads)
+- **StatsForecast**: Lightning-fast statistical forecasting (AutoARIMA, ETS, CES, MSTL, Theta)
+- **NeuralForecast**: Deep learning models (NBEATS, NHITS, PatchTST, TimesNet, TFT)
+- **MLForecast**: Machine learning forecasting (LightGBM, XGBoost, scikit-learn)
+- **HierarchicalForecast**: Hierarchical reconciliation methods
+- **CoreForecast**: High-performance C/C++ backend
+- **UtilsForecast**: Common utilities for time series processing
+https://github.com/Nixtla
+
+## Deployment Options
+- **Cloud API**: Managed service with instant access
+- **Self-hosted**: Deploy on your own infrastructure (AWS, Azure, GCP)
+- **On-premises**: Air-gapped deployments for regulated industries
+
+## Industries Served
+- **Supply Chain**: Demand forecasting at SKU/location level, inventory optimization
+- **Energy**: Electricity load, renewable generation, and price forecasting
+- **Financial Markets**: Risk management, portfolio optimization, market analysis
+- **Retail**: Sales forecasting, promotion planning, seasonal demand
+- **Healthcare**: Patient volume, resource allocation forecasting
+
+## Key Metrics & Results
+- 85% reduction in false alerts (Lyft case study)
+- 10x improvement in anomaly detection speed
+- 500+ ML models onboarded at scale
+- 50% higher accuracy vs traditional methods
+- 95% codebase reduction in forecasting pipelines
+- IDC Market Leader for 3 consecutive years
+
+## Documentation
+Complete guides, API references, and tutorials for implementing time series forecasting.
+https://www.nixtla.io/docs
+
+## Blog
+Technical articles, research updates, and practical guides on forecasting, anomaly detection, and predictive analytics.
+https://www.nixtla.io/blog
+
+## Success Stories
+Real-world case studies from Microsoft, Lyft, Prudential, Decathlon, and other enterprises.
+https://www.nixtla.io/success-stories
+
+## Company
+Founded in 2021. Backed by M12 (Microsoft's Venture Fund), True Ventures, GPV, and Energize. 16k+ GitHub stars, 49M+ downloads, 20k+ TimeGPT users, 10k+ community members.
+https://www.nixtla.io/company
+
+## Contact
+- Support: support@nixtla.io
+- Sales & Enterprise: https://www.nixtla.io/book-a-call
+- GitHub: https://github.com/Nixtla
+- X/Twitter: https://x.com/nixtlainc
+- LinkedIn: https://www.linkedin.com/company/nixtlainc
+
+## Optional
+- llms-full.txt: https://www.nixtla.io/llms-full.txt

@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/nixtla-openapi-original.json
+skills:
+  - file: nixtla-forecast.md
+    name: Forecast a time series with TimeGPT
+    api: openapi/nixtla-openapi-original.json
+    operations: [v2_forecast_v2_forecast_post, get_model_params_model_params_get, validate_api_key_validate_api_key_get]
+  - file: nixtla-anomaly-detection.md
+    name: Detect anomalies in time series with TimeGPT
+    api: openapi/nixtla-openapi-original.json
+    operations: [v2_anomaly_detection_v2_anomaly_detection_post, v2_online_anomaly_detection_v2_online_anomaly_detection_post]
+  - file: nixtla-finetune.md
+    name: Fine-tune and reuse a TimeGPT model
+    api: openapi/nixtla-openapi-original.json
+    operations: [v2_finetune_v2_finetune_post, v2_finetuned_models_v2_finetuned_models_get, v2_finetuned_model_v2_finetuned_models__finetuned_model_id__get, v2_finetuned_models_delete_v2_finetuned_models__finetuned_model_id__delete]

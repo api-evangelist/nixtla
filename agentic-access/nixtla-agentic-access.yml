@@ -1,0 +1,152 @@
+generated: '2026-07-20'
+method: generated
+source: openapi/nixtla-openapi-original.json
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 10
+  by_action_class:
+    acting: 6
+    connected: 4
+  by_consequence:
+    write: 6
+    read: 4
+  human_in_the_loop_required: 0
+operations:
+- path: /v2/forecast
+  method: post
+  operationId: v2_forecast_v2_forecast_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/anomaly_detection
+  method: post
+  operationId: v2_anomaly_detection_v2_anomaly_detection_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/online_anomaly_detection
+  method: post
+  operationId: v2_online_anomaly_detection_v2_online_anomaly_detection_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /model_params
+  method: get
+  operationId: get_model_params_model_params_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/cross_validation
+  method: post
+  operationId: v2_cross_validation_v2_cross_validation_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/finetune
+  method: post
+  operationId: v2_finetune_v2_finetune_post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/finetuned_models
+  method: get
+  operationId: v2_finetuned_models_v2_finetuned_models_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/finetuned_models/{finetuned_model_id}
+  method: get
+  operationId: v2_finetuned_model_v2_finetuned_models__finetuned_model_id__get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/finetuned_models/{finetuned_model_id}
+  method: delete
+  operationId: v2_finetuned_models_delete_v2_finetuned_models__finetuned_model_id__delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /validate_api_key
+  method: get
+  operationId: validate_api_key_validate_api_key_get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

@@ -1,0 +1,28 @@
+{
+  "provider": "nixtla",
+  "sources": [
+    "nixtla-anomaly-detection-api-openapi.yml",
+    "nixtla-cross-validation-api-openapi.yml",
+    "nixtla-excluded-api-openapi.yml",
+    "nixtla-finetune-api-openapi.yml",
+    "nixtla-finetuned-models-api-openapi.yml",
+    "nixtla-forecast-api-openapi.yml",
+    "nixtla-online-anomaly-detection-api-openapi.yml",
+    "nixtla-validate-api-key-api-openapi.yml"
+  ],
+  "outputs": [
+    "nixtla-anomaly-detection-api-openapi.yml",
+    "nixtla-cross-validation-api-openapi.yml",
+    "nixtla-excluded-api-openapi.yml",
+    "nixtla-finetune-api-openapi.yml",
+    "nixtla-finetuned-models-api-openapi.yml",
+    "nixtla-forecast-api-openapi.yml",
+    "nixtla-online-anomaly-detection-api-openapi.yml",
+    "nixtla-validate-api-key-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

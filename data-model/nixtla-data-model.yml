@@ -1,0 +1,49 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/nixtla-openapi-original.json
+note: >-
+  Derived from the OpenAPI components.schemas. The Nixtla API is a compute API
+  (stateless forecast/anomaly/cross-validation request-response) with one
+  persisted entity: the fine-tuned model. Inputs/outputs are payload envelopes
+  rather than long-lived resources.
+entities:
+  - name: FinetunedModel
+    persisted: true
+    id_field: finetuned_model_id
+    description: A model fine-tuned on customer data and saved for reuse in later forecast calls.
+    operations:
+      list: v2_finetuned_models_v2_finetuned_models_get
+      get: v2_finetuned_model_v2_finetuned_models__finetuned_model_id__get
+      delete: v2_finetuned_models_delete_v2_finetuned_models__finetuned_model_id__delete
+      create: v2_finetune_v2_finetune_post
+  - name: ForecastInput
+    persisted: false
+    description: Request envelope — series frequency, historical values, horizon, exogenous variables.
+  - name: ForecastOutput
+    persisted: false
+    description: Predicted values (and optional intervals / feature contributions).
+  - name: AnomalyDetectionInput
+    persisted: false
+  - name: AnomalyDetectionOutput
+    persisted: false
+  - name: OnlineAnomalyInput
+    persisted: false
+  - name: OnlineAnomalyOutput
+    persisted: false
+  - name: CrossValidationInput
+    persisted: false
+  - name: CrossValidationOutput
+    persisted: false
+  - name: SeriesWithFutureExogenous
+    persisted: false
+    description: A time series plus its known future exogenous regressors.
+relationships:
+  - from: ForecastInput
+    to: SeriesWithFutureExogenous
+    kind: has_many
+    via: series
+  - from: v2_forecast
+    to: FinetunedModel
+    kind: references
+    via: finetuned_model_id
+    note: A forecast call may reference a saved fine-tuned model by id.

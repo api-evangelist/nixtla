@@ -1,0 +1,27 @@
+generated: '2026-07-20'
+method: searched
+host: https://api.nixtla.io
+note: >-
+  No /.well-known/ discovery documents are published on the API host or the
+  website. Probed 2026-07-20; every path returned 404. A first-party llms.txt is
+  published (see llms/nixtla-llms.txt) and an OpenAPI is published at
+  https://nixtla.io/docs/openapi.json (see openapi/).
+documents:
+  - path: /.well-known/security.txt
+    host: https://api.nixtla.io
+    status: 404
+  - path: /.well-known/openid-configuration
+    host: https://api.nixtla.io
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    host: https://api.nixtla.io
+    status: 404
+  - path: /.well-known/api-catalog
+    host: https://api.nixtla.io
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    host: https://api.nixtla.io
+    status: 404
+  - path: /.well-known/security.txt
+    host: https://www.nixtla.io
+    status: 404
