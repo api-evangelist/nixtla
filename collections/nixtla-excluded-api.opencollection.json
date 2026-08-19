@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nixtla Forecast Anomaly Detection excluded API",
+    "version": "0.2.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "excluded",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Model Params",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nixtla.io/model_params",
+            "params": [
+              {
+                "name": "model",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "freq",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Get Model Params"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

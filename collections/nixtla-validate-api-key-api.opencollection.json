@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nixtla Forecast Anomaly Detection Validate Api Key API",
+    "version": "0.2.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Validate Api Key",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Validate Api Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nixtla.io/validate_api_key",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Validate Api Key"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

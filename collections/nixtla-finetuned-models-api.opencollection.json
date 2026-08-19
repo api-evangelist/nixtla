@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nixtla Forecast Anomaly Detection Finetuned Models API",
+    "version": "0.2.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Finetuned Models",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Fine-tuned Models",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nixtla.io/v2/finetuned_models",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "List all the finetuned models that you have created. The response contains a list with the IDs of the models that you have fine-tuned and are available to make forecasts."
+        },
+        {
+          "info": {
+            "name": "Get single Fine-tuned Model",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.nixtla.io/v2/finetuned_models/:finetuned_model_id",
+            "params": [
+              {
+                "name": "finetuned_model_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieve metadata for a previously fine-tuned model. The response contains the metadata of a model that you have fine-tuned and is available to make forecasts."
+        },
+        {
+          "info": {
+            "name": "Delete Fine-tuned Model",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.nixtla.io/v2/finetuned_models/:finetuned_model_id",
+            "params": [
+              {
+                "name": "finetuned_model_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Delete a previously saved finetuned model. It takes the ID of the model that you want to delete as a path parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

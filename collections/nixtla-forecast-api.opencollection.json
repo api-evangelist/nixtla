@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nixtla Anomaly Detection Forecast API",
+    "version": "0.2.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forecast",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Foundational Time Series Model Multi Series",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nixtla.io/v2/forecast",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Based on the provided data, this endpoint predicts the future values of multiple time series at once. It takes a JSON as an input containing information like the series frequency and historical data. (See below for a full description of the parameters.) The response contains the predicted values for each series based on the input arguments. Get your token at https://nixtla.io/free-trial?utm_source=nixtla.io&utm_campaign=/docs/api-reference."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

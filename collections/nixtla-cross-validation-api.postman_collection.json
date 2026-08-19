@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "e4d67f11-f3ac-4edf-a238-91cf792c01ba",
+      "name": "Cross Validation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed221b5f-809e-4178-b08b-412ad2c9bdde",
+          "name": "Foundational Time Series Model Multi Series Cross Validation",
+          "request": {
+            "name": "Foundational Time Series Model Multi Series Cross Validation",
+            "description": {
+              "content": "Perform Cross Validation for multiple series",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "cross_validation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"series\": {\n    \"y\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"sizes\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"X_future\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"X\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"categorical_exog\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"freq\": \"<string>\",\n  \"h\": \"<integer>\",\n  \"n_windows\": 1,\n  \"full_history\": false,\n  \"model\": \"timegpt-1\",\n  \"clean_ex_first\": true,\n  \"level\": [\n    \"<integer>\"\n  ],\n  \"finetune_steps\": 0,\n  \"finetune_loss\": \"default\",\n  \"finetune_depth\": 1,\n  \"finetuned_model_id\": \"<string>\",\n  \"step_size\": \"<integer>\",\n  \"hist_exog\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"refit\": true,\n  \"multivariate\": false,\n  \"model_parameters\": {\n    \"key_0\": \"string\",\n    \"key_1\": true,\n    \"key_2\": true\n  },\n  \"feature_contributions\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2178bdaa-35b1-40a3-83b2-2fedd00ee26f",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cross_validation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"series\": {\n    \"y\": [\n      9545.856021342326,\n      9118.470938696137\n    ],\n    \"sizes\": [\n      9805,\n      5679\n    ],\n    \"X_future\": [\n      [\n        9313.845424285006,\n        8320.01277958845\n      ],\n      [\n        6367.75119982076,\n        7224.641531525618\n      ]\n    ],\n    \"X\": [\n      [\n        2265.873736064896,\n        3774.667181010244\n      ],\n      [\n        2695.2606251740663,\n        2823.3624466421957\n      ]\n    ],\n    \"categorical_exog\": [\n      9138,\n      8090\n    ]\n  },\n  \"freq\": \"<string>\",\n  \"h\": \"<integer>\",\n  \"n_windows\": 1,\n  \"full_history\": false,\n  \"model\": \"timegpt-1\",\n  \"clean_ex_first\": true,\n  \"level\": [\n    \"<integer>\"\n  ],\n  \"finetune_steps\": 0,\n  \"finetune_loss\": \"default\",\n  \"finetune_depth\": 1,\n  \"finetuned_model_id\": \"<string>\",\n  \"step_size\": \"<integer>\",\n  \"hist_exog\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"refit\": true,\n  \"multivariate\": false,\n  \"model_parameters\": {\n    \"key_0\": 8973.212932649489\n  },\n  \"feature_contributions\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"input_tokens\": 4544,\n  \"output_tokens\": 3040,\n  \"finetune_tokens\": 1437,\n  \"mean\": [\n    3766.672168027576,\n    77.69111884602053\n  ],\n  \"sizes\": [\n    9981,\n    1460\n  ],\n  \"idxs\": [\n    1776,\n    6075\n  ],\n  \"intervals\": {\n    \"key_0\": [\n      8089.413445837019,\n      4216.797874731763\n    ],\n    \"key_1\": [\n      2057.1380601076494,\n      1484.7454315735686\n    ]\n  },\n  \"feature_contributions\": [\n    [\n      76.32948784610738,\n      2176.616033948936\n    ],\n    [\n      3676.1356873507934,\n      7768.09154605317\n    ]\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "217e2071-df65-4a74-baf1-92c8aafa55d7",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cross_validation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"series\": {\n    \"y\": [\n      9545.856021342326,\n      9118.470938696137\n    ],\n    \"sizes\": [\n      9805,\n      5679\n    ],\n    \"X_future\": [\n      [\n        9313.845424285006,\n        8320.01277958845\n      ],\n      [\n        6367.75119982076,\n        7224.641531525618\n      ]\n    ],\n    \"X\": [\n      [\n        2265.873736064896,\n        3774.667181010244\n      ],\n      [\n        2695.2606251740663,\n        2823.3624466421957\n      ]\n    ],\n    \"categorical_exog\": [\n      9138,\n      8090\n    ]\n  },\n  \"freq\": \"<string>\",\n  \"h\": \"<integer>\",\n  \"n_windows\": 1,\n  \"full_history\": false,\n  \"model\": \"timegpt-1\",\n  \"clean_ex_first\": true,\n  \"level\": [\n    \"<integer>\"\n  ],\n  \"finetune_steps\": 0,\n  \"finetune_loss\": \"default\",\n  \"finetune_depth\": 1,\n  \"finetuned_model_id\": \"<string>\",\n  \"step_size\": \"<integer>\",\n  \"hist_exog\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"refit\": true,\n  \"multivariate\": false,\n  \"model_parameters\": {\n    \"key_0\": 8973.212932649489\n  },\n  \"feature_contributions\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nixtla.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9d9a9a59-4f59-4cac-9e1f-6ae63c221a91",
+    "name": "Nixtla Forecast Anomaly Detection Cross Validation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for TimeGPT forecast. Just send your data as json and get results. We do the heavy lifting.",
+      "type": "text/plain"
+    }
+  }
+}

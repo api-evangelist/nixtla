@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nixtla Forecast Anomaly Detection API",
+    "version": "0.2.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Anomaly Detection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Foundational Time Series Model Multi Series Anomaly Detector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nixtla.io/v2/anomaly_detection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Based on the provided data, this endpoint detects the anomalies in the historical perdiod of multiple time series at once. It takes a JSON as an input containing information like the series frequency and historical data. (See below for a full description of the parameters.) The response contains a flag indicating if the date has an anomaly and also provides the prediction interval used to define if an observation is an anomaly.Get your token at https://nixtla.io/free-trial?utm_source=nixtla.io&u"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

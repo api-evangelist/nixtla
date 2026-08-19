@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Nixtla Forecast Anomaly Detection Online Anomaly Detection API",
+    "version": "0.2.8"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Online Anomaly Detection",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Foundational Time Series Model Online Multi Series Anomaly Detector",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.nixtla.io/v2/online_anomaly_detection",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint performs online anomaly detection based on the provided data. It uses cross-validation for more robust detection of anomalies and it supports detection for univariate and multivariate scenarios. It takes a JSON as an input containing information like the series frequency and historical data. (See below for a full description of the parameters.) The response contains a flag indicating if the date has an anomaly, it provides the prediction interval used to define if an observation is"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

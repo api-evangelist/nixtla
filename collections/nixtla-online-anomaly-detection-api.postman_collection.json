@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "58ac70e5-923e-42e7-96c1-e75327ad4484",
+      "name": "Online Anomaly Detection",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9efd8166-2541-4daf-998d-f6926d353929",
+          "name": "Foundational Time Series Model Online Multi Series Anomaly Detector",
+          "request": {
+            "name": "Foundational Time Series Model Online Multi Series Anomaly Detector",
+            "description": {
+              "content": "This endpoint performs online anomaly detection based on the provided data. It uses cross-validation for more robust detection of anomalies and it supports detection for univariate and multivariate scenarios. It takes a JSON as an input containing information like the series frequency and historical data. (See below for a full description of the parameters.) The response contains a flag indicating if the date has an anomaly, it provides the prediction interval used to define if an observation is an anomaly, and it reports the associated z-score for each point. Get your token at https://nixtla.io/free-trial?utm_source=nixtla.io&utm_campaign=/docs/api-reference.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "online_anomaly_detection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"series\": {\n    \"y\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"sizes\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"X_future\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"X\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"categorical_exog\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"freq\": \"<string>\",\n  \"detection_size\": \"<integer>\",\n  \"h\": \"<integer>\",\n  \"threshold_method\": \"univariate\",\n  \"model\": \"timegpt-1\",\n  \"clean_ex_first\": true,\n  \"level\": \"<integer>\",\n  \"finetune_steps\": 0,\n  \"finetune_loss\": \"default\",\n  \"finetune_depth\": 1,\n  \"finetuned_model_id\": \"<string>\",\n  \"step_size\": \"<integer>\",\n  \"hist_exog\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"refit\": true,\n  \"multivariate\": false,\n  \"model_parameters\": {\n    \"key_0\": 5868.398768248327\n  },\n  \"feature_contributions\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1334b6b4-2d5c-47dd-bd02-6a396099f186",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "online_anomaly_detection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"series\": {\n    \"y\": [\n      1569.3409517234224,\n      756.175966123298\n    ],\n    \"sizes\": [\n      4639,\n      7221\n    ],\n    \"X_future\": [\n      [\n        6291.624959859176,\n        9245.685212749864\n      ],\n      [\n        2418.3263398557297,\n        9303.750034110226\n      ]\n    ],\n    \"X\": [\n      [\n        6954.977273400451,\n        6942.123222777682\n      ],\n      [\n        8989.470320460308,\n        9832.562131301724\n      ]\n    ],\n    \"categorical_exog\": [\n      4144,\n      3765\n    ]\n  },\n  \"freq\": \"<string>\",\n  \"detection_size\": \"<integer>\",\n  \"h\": \"<integer>\",\n  \"threshold_method\": \"univariate\",\n  \"model\": \"timegpt-1\",\n  \"clean_ex_first\": true,\n  \"level\": \"<integer>\",\n  \"finetune_steps\": 0,\n  \"finetune_loss\": \"default\",\n  \"finetune_depth\": 1,\n  \"finetuned_model_id\": \"<string>\",\n  \"step_size\": \"<integer>\",\n  \"hist_exog\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"refit\": true,\n  \"multivariate\": false,\n  \"model_parameters\": {\n    \"key_0\": 4737,\n    \"key_1\": 3507.5381192182385,\n    \"key_2\": false\n  },\n  \"feature_contributions\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"input_tokens\": 5818,\n  \"output_tokens\": 2140,\n  \"finetune_tokens\": 4753,\n  \"mean\": [\n    9360.57429572862,\n    8312.816044308214\n  ],\n  \"sizes\": [\n    618,\n    9796\n  ],\n  \"idxs\": [\n    7568,\n    2517\n  ],\n  \"anomaly\": [\n    true,\n    true\n  ],\n  \"anomaly_score\": [\n    1097.3539930101183,\n    7470.037431929385\n  ],\n  \"accumulated_anomaly_score\": [\n    411.01254638044816,\n    3158.7101818374185\n  ],\n  \"intervals\": {\n    \"key_0\": [\n      8644.176654418556,\n      3938.1185397615113\n    ],\n    \"key_1\": [\n      3752.229171042223,\n      4784.862507784843\n    ],\n    \"key_2\": [\n      6266.87868793773,\n      8222.978919187239\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a738b43a-fdeb-407e-b939-b6afce3c06ae",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "online_anomaly_detection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"series\": {\n    \"y\": [\n      1569.3409517234224,\n      756.175966123298\n    ],\n    \"sizes\": [\n      4639,\n      7221\n    ],\n    \"X_future\": [\n      [\n        6291.624959859176,\n        9245.685212749864\n      ],\n      [\n        2418.3263398557297,\n        9303.750034110226\n      ]\n    ],\n    \"X\": [\n      [\n        6954.977273400451,\n        6942.123222777682\n      ],\n      [\n        8989.470320460308,\n        9832.562131301724\n      ]\n    ],\n    \"categorical_exog\": [\n      4144,\n      3765\n    ]\n  },\n  \"freq\": \"<string>\",\n  \"detection_size\": \"<integer>\",\n  \"h\": \"<integer>\",\n  \"threshold_method\": \"univariate\",\n  \"model\": \"timegpt-1\",\n  \"clean_ex_first\": true,\n  \"level\": \"<integer>\",\n  \"finetune_steps\": 0,\n  \"finetune_loss\": \"default\",\n  \"finetune_depth\": 1,\n  \"finetuned_model_id\": \"<string>\",\n  \"step_size\": \"<integer>\",\n  \"hist_exog\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"refit\": true,\n  \"multivariate\": false,\n  \"model_parameters\": {\n    \"key_0\": 4737,\n    \"key_1\": 3507.5381192182385,\n    \"key_2\": false\n  },\n  \"feature_contributions\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nixtla.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ffaf09c3-e41a-461c-b31a-cdefcd16563a",
+    "name": "Nixtla Forecast Anomaly Detection Online Anomaly Detection API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for TimeGPT forecast. Just send your data as json and get results. We do the heavy lifting.",
+      "type": "text/plain"
+    }
+  }
+}

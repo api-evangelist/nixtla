@@ -5,50 +5,52 @@ source: https://www.nixtla.io/blog/genai-announcement
 server:
   name: nixtla
   transport: stdio
-  description: >-
-    Nixtla ships MCP tools that expose TimeGPT time-series forecasting and
-    anomaly detection to AI agents. Announced 2025-12-18 as part of Nixtla
-    Enterprise's foundation-models + MCP + agentic release. Distributed via
-    installers for production and local environments; documented to work with
-    Claude Desktop, Claude Code, and Cursor. No public hosted/remote endpoint
-    URL is advertised — installed locally against the Nixtla API key.
+  description: Nixtla ships MCP tools that expose TimeGPT time-series forecasting and anomaly detection
+    to AI agents. Announced 2025-12-18 as part of Nixtla Enterprise's foundation-models + MCP + agentic
+    release. Distributed via installers for production and local environments; documented to work with
+    Claude Desktop, Claude Code, and Cursor. No public hosted/remote endpoint URL is advertised — installed
+    locally against the Nixtla API key.
   clients:
-    - Claude Desktop
-    - Claude Code
-    - Cursor
-notes: >-
-  The tools[] below are candidate tools DERIVED from the published OpenAPI
-  operations (https://nixtla.io/docs/openapi.json), not a verbatim capture of
-  Nixtla's shipped MCP tool manifest, which is not publicly enumerated. They
+  - Claude Desktop
+  - Claude Code
+  - Cursor
+notes: The tools[] below are candidate tools DERIVED from the published OpenAPI operations (https://nixtla.io/docs/openapi.json),
+  not a verbatim capture of Nixtla's shipped MCP tool manifest, which is not publicly enumerated. They
   reflect the API surface an MCP server over this API would expose.
 tools:
-  - name: forecast
-    description: Multi-series time-series forecast with TimeGPT.
-    source_operation: openapi/nixtla-openapi-original.json#v2_forecast_v2_forecast_post
-  - name: detect_anomalies
-    description: Detect anomalies across multiple historical time series.
-    source_operation: openapi/nixtla-openapi-original.json#v2_anomaly_detection_v2_anomaly_detection_post
-  - name: detect_anomalies_online
-    description: Real-time (online) anomaly detection over streaming series.
-    source_operation: openapi/nixtla-openapi-original.json#v2_online_anomaly_detection_v2_online_anomaly_detection_post
-  - name: cross_validation
-    description: Rolling-window cross validation for multiple series.
-    source_operation: openapi/nixtla-openapi-original.json#v2_cross_validation_v2_cross_validation_post
-  - name: finetune
-    description: Fine-tune TimeGPT on custom data and save the model for reuse.
-    source_operation: openapi/nixtla-openapi-original.json#v2_finetune_v2_finetune_post
-  - name: list_finetuned_models
-    description: List saved fine-tuned models.
-    source_operation: openapi/nixtla-openapi-original.json#v2_finetuned_models_v2_finetuned_models_get
-  - name: get_finetuned_model
-    description: Retrieve metadata for a fine-tuned model.
-    source_operation: openapi/nixtla-openapi-original.json#v2_finetuned_model_v2_finetuned_models__finetuned_model_id__get
-  - name: delete_finetuned_model
-    description: Delete a saved fine-tuned model.
-    source_operation: openapi/nixtla-openapi-original.json#v2_finetuned_models_delete_v2_finetuned_models__finetuned_model_id__delete
-  - name: get_model_params
-    description: Get model input_size and horizon parameters for a model/frequency.
-    source_operation: openapi/nixtla-openapi-original.json#get_model_params_model_params_get
-  - name: validate_api_key
-    description: Validate a Nixtla API key.
-    source_operation: openapi/nixtla-openapi-original.json#validate_api_key_validate_api_key_get
+- name: forecast
+  description: Multi-series time-series forecast with TimeGPT.
+  source_operation: openapi/nixtla-openapi-original.json#v2_forecast_v2_forecast_post
+- name: detect_anomalies
+  description: Detect anomalies across multiple historical time series.
+  source_operation: openapi/nixtla-openapi-original.json#v2_anomaly_detection_v2_anomaly_detection_post
+- name: detect_anomalies_online
+  description: Real-time (online) anomaly detection over streaming series.
+  source_operation: openapi/nixtla-openapi-original.json#v2_online_anomaly_detection_v2_online_anomaly_detection_post
+- name: cross_validation
+  description: Rolling-window cross validation for multiple series.
+  source_operation: openapi/nixtla-openapi-original.json#v2_cross_validation_v2_cross_validation_post
+- name: finetune
+  description: Fine-tune TimeGPT on custom data and save the model for reuse.
+  source_operation: openapi/nixtla-openapi-original.json#v2_finetune_v2_finetune_post
+- name: list_finetuned_models
+  description: List saved fine-tuned models.
+  source_operation: openapi/nixtla-openapi-original.json#v2_finetuned_models_v2_finetuned_models_get
+- name: get_finetuned_model
+  description: Retrieve metadata for a fine-tuned model.
+  source_operation: openapi/nixtla-openapi-original.json#v2_finetuned_model_v2_finetuned_models__finetuned_model_id__get
+- name: delete_finetuned_model
+  description: Delete a saved fine-tuned model.
+  source_operation: openapi/nixtla-openapi-original.json#v2_finetuned_models_delete_v2_finetuned_models__finetuned_model_id__delete
+- name: get_model_params
+  description: Get model input_size and horizon parameters for a model/frequency.
+  source_operation: openapi/nixtla-openapi-original.json#get_model_params_model_params_get
+- name: validate_api_key
+  description: Validate a Nixtla API key.
+  source_operation: openapi/nixtla-openapi-original.json#validate_api_key_validate_api_key_get
+deployment:
+  mode: local-stdio
+  verified: searched
+  tools: 10
+  checked: '2026-08-12'
+  source: catalog MCP census

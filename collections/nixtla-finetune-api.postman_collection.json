@@ -1,0 +1,193 @@
+{
+  "item": [
+    {
+      "id": "764e2090-9dcd-4f01-ac78-cc89a3a955b1",
+      "name": "Finetune",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "60a39d7e-f522-47aa-8834-009e40a9a8eb",
+          "name": "Foundational Time Series Model Multi Series Finetuning",
+          "request": {
+            "name": "Foundational Time Series Model Multi Series Finetuning",
+            "description": {
+              "content": "Fine-tune the large time model to your data and save it for later use. It takes a JSON as an input containing information like the series frequency and historical data. (See below for a full description of the parameters.) The response contains the ID of the finetuned model, which you can provide in other endpoints to use that model to make the forecasts. Get your token at https://nixtla.io/free-trial?utm_source=nixtla.io&utm_campaign=/docs/api-reference.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "finetune"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"series\": {\n    \"y\": [\n      \"<number>\",\n      \"<number>\"\n    ],\n    \"sizes\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"X_future\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"X\": [\n      [\n        \"<number>\",\n        \"<number>\"\n      ],\n      [\n        \"<number>\",\n        \"<number>\"\n      ]\n    ],\n    \"categorical_exog\": [\n      \"<integer>\",\n      \"<integer>\"\n    ]\n  },\n  \"freq\": \"<string>\",\n  \"model\": \"timegpt-1\",\n  \"finetune_steps\": 10,\n  \"finetune_loss\": \"default\",\n  \"finetune_depth\": 1,\n  \"output_model_id\": \"<string>\",\n  \"finetuned_model_id\": \"<string>\",\n  \"hist_exog\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"multivariate\": false,\n  \"model_parameters\": {\n    \"key_0\": 7043\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "36cc0e12-32e0-471e-8d46-52bd0303a0fd",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "finetune"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"series\": {\n    \"y\": [\n      5926.823770281711,\n      5332.52219349044\n    ],\n    \"sizes\": [\n      5665,\n      3604\n    ],\n    \"X_future\": [\n      [\n        2289.075163269262,\n        7797.9537642106125\n      ],\n      [\n        2347.395922812041,\n        4342.308718825921\n      ]\n    ],\n    \"X\": [\n      [\n        107.12088946379205,\n        5962.7508485613325\n      ],\n      [\n        9466.560470755543,\n        9037.910192440251\n      ]\n    ],\n    \"categorical_exog\": [\n      5902,\n      582\n    ]\n  },\n  \"freq\": \"<string>\",\n  \"model\": \"timegpt-1\",\n  \"finetune_steps\": 10,\n  \"finetune_loss\": \"default\",\n  \"finetune_depth\": 1,\n  \"output_model_id\": \"<string>\",\n  \"finetuned_model_id\": \"<string>\",\n  \"hist_exog\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"multivariate\": false,\n  \"model_parameters\": {\n    \"key_0\": 7497.036331343564\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"input_tokens\": 4922,\n  \"output_tokens\": 7866,\n  \"finetune_tokens\": 2232,\n  \"finetuned_model_id\": \"us5a-oghx6JCVw-or5XkD02oVRA\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1dfdded-9af3-49c8-8893-a11379dae706",
+              "name": "Validation Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "finetune"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"series\": {\n    \"y\": [\n      5926.823770281711,\n      5332.52219349044\n    ],\n    \"sizes\": [\n      5665,\n      3604\n    ],\n    \"X_future\": [\n      [\n        2289.075163269262,\n        7797.9537642106125\n      ],\n      [\n        2347.395922812041,\n        4342.308718825921\n      ]\n    ],\n    \"X\": [\n      [\n        107.12088946379205,\n        5962.7508485613325\n      ],\n      [\n        9466.560470755543,\n        9037.910192440251\n      ]\n    ],\n    \"categorical_exog\": [\n      5902,\n      582\n    ]\n  },\n  \"freq\": \"<string>\",\n  \"model\": \"timegpt-1\",\n  \"finetune_steps\": 10,\n  \"finetune_loss\": \"default\",\n  \"finetune_depth\": 1,\n  \"output_model_id\": \"<string>\",\n  \"finetuned_model_id\": \"<string>\",\n  \"hist_exog\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"multivariate\": false,\n  \"model_parameters\": {\n    \"key_0\": 7497.036331343564\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"detail\": [\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    },\n    {\n      \"loc\": [\n        \"string\",\n        \"string\"\n      ],\n      \"msg\": \"string\",\n      \"type\": \"string\",\n      \"input\": {},\n      \"ctx\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.nixtla.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ece1fc37-a256-45f1-a2e0-96b1ed8b3ce6",
+    "name": "Nixtla Forecast Anomaly Detection Finetune API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for TimeGPT forecast. Just send your data as json and get results. We do the heavy lifting.",
+      "type": "text/plain"
+    }
+  }
+}
