@@ -42,6 +42,16 @@ tags:
 - Time Series
 - Forecasting
 - Anomaly Detection
+- Machine-Learning
+- Artificial Intelligence
+- Foundation Model
+- Predictive Analytics
+- Data Science
+tags_raw:
+- Company
+- Time Series
+- Forecasting
+- Anomaly Detection
 - Machine Learning
 - Artificial Intelligence
 - Foundation Model
@@ -115,6 +125,8 @@ apis:
   humanURL: https://www.nixtla.io/docs
   baseURL: https://api.nixtla.io
   tags:
+  - Fine-Tuned Models
+  tags_raw:
   - Finetuned Models
   properties:
   - type: OpenAPI
