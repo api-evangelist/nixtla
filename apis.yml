@@ -13,6 +13,18 @@ description: >-
   with tens of millions of downloads, offers cloud, self-hosted, and air-gapped
   deployments, ships MCP tools for agentic time-series workflows, and is SOC 2
   Type II compliant. Nixtla is backed by Techstars and True Ventures.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
