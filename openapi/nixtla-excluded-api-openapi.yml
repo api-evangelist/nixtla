@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Nixtla Forecast Anomaly Detection excluded API
+  title: Nixtla Forecast Excluded API
   description: API for TimeGPT forecast. Just send your data as json and get results. We do the heavy lifting.
   version: 0.2.8
 servers:

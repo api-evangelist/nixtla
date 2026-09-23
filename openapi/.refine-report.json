@@ -1,28 +1,51 @@
 {
   "provider": "nixtla",
   "sources": [
-    "nixtla-anomaly-detection-api-openapi.yml",
-    "nixtla-cross-validation-api-openapi.yml",
-    "nixtla-excluded-api-openapi.yml",
-    "nixtla-finetune-api-openapi.yml",
-    "nixtla-finetuned-models-api-openapi.yml",
-    "nixtla-forecast-api-openapi.yml",
-    "nixtla-online-anomaly-detection-api-openapi.yml",
-    "nixtla-validate-api-key-api-openapi.yml"
+    "_original/nixtla-openapi-original.json"
   ],
   "outputs": [
     "nixtla-anomaly-detection-api-openapi.yml",
     "nixtla-cross-validation-api-openapi.yml",
-    "nixtla-excluded-api-openapi.yml",
     "nixtla-finetune-api-openapi.yml",
     "nixtla-finetuned-models-api-openapi.yml",
     "nixtla-forecast-api-openapi.yml",
     "nixtla-online-anomaly-detection-api-openapi.yml",
-    "nixtla-validate-api-key-api-openapi.yml"
+    "nixtla-validate-api-key-api-openapi.yml",
+    "nixtla-excluded-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "nixtla-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "nixtla-openapi-original.json: tagged paths POST /v2/forecast -> Forecast",
+    "nixtla-openapi-original.json: tagged paths POST /v2/anomaly_detection -> Anomaly Detection",
+    "nixtla-openapi-original.json: tagged paths POST /v2/online_anomaly_detection -> Online Anomaly Detection",
+    "nixtla-openapi-original.json: tagged paths POST /v2/cross_validation -> Cross Validation",
+    "nixtla-openapi-original.json: tagged paths POST /v2/finetune -> Finetune",
+    "nixtla-openapi-original.json: tagged paths GET /v2/finetuned_models -> Finetuned Models",
+    "nixtla-openapi-original.json: tagged paths GET /v2/finetuned_models/{finetuned_model_id} -> Finetuned Models",
+    "nixtla-openapi-original.json: tagged paths DELETE /v2/finetuned_models/{finetuned_model_id} -> Finetuned Models",
+    "nixtla-openapi-original.json: tagged paths GET /validate_api_key -> Validate Api Key",
+    "nixtla-openapi-original.json: declared missing tag: Anomaly Detection",
+    "nixtla-openapi-original.json: declared missing tag: Cross Validation",
+    "nixtla-openapi-original.json: declared missing tag: Finetune",
+    "nixtla-openapi-original.json: declared missing tag: Finetuned Models",
+    "nixtla-openapi-original.json: declared missing tag: Forecast",
+    "nixtla-openapi-original.json: declared missing tag: Online Anomaly Detection",
+    "nixtla-openapi-original.json: declared missing tag: Validate Api Key",
+    "nixtla-openapi-original.json: declared missing tag: excluded",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "nixtla-anomaly-detection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nixtla-cross-validation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nixtla-excluded-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nixtla-finetune-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nixtla-finetuned-models-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nixtla-forecast-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nixtla-online-anomaly-detection-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "nixtla-validate-api-key-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

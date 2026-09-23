@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Nixtla Forecast Anomaly Detection Cross Validation API
+  title: Nixtla Forecast Cross Validation API
   description: API for TimeGPT forecast. Just send your data as json and get results. We do the heavy lifting.
   version: 0.2.8
 servers:
@@ -56,6 +56,149 @@ paths:
       - Cross Validation
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    CrossValidationOutput:
+      properties:
+        input_tokens:
+          type: integer
+          minimum: 0
+          title: Input Tokens
+        output_tokens:
+          type: integer
+          minimum: 0
+          title: Output Tokens
+        finetune_tokens:
+          type: integer
+          minimum: 0
+          title: Finetune Tokens
+        mean:
+          items:
+            type: number
+          type: array
+          title: Mean
+        sizes:
+          items:
+            type: integer
+          type: array
+          title: Sizes
+        idxs:
+          items:
+            type: integer
+          type: array
+          title: Idxs
+        intervals:
+          anyOf:
+          - additionalProperties:
+              items:
+                type: number
+              type: array
+            type: object
+          - type: 'null'
+          title: Intervals
+        feature_contributions:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Feature Contributions
+      type: object
+      required:
+      - input_tokens
+      - output_tokens
+      - finetune_tokens
+      - mean
+      - sizes
+      - idxs
+      title: CrossValidationOutput
+    SeriesWithFutureExogenous:
+      properties:
+        X_future:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X Future
+          description: Future values of the exogenous features. Each feature must be a list of size number of series times the forecast horizon (h).
+        X:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X
+          description: Historic values of the exogenous features. Each feature must be a list of the same size as the target (y).
+        categorical_exog:
+          anyOf:
+          - items:
+              type: integer
+              minimum: 0
+            type: array
+          - type: 'null'
+          title: Categorical Exog
+          description: Zero-based indices of the columns in X that are categorical features.
+        y:
+          items:
+            type: number
+          type: array
+          title: Y
+          description: Historic values of the target.
+        sizes:
+          items:
+            type: integer
+          type: array
+          title: Sizes
+          description: Sizes of the individual series.
+      type: object
+      required:
+      - y
+      - sizes
+      title: SeriesWithFutureExogenous
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     CrossValidationInput:
       properties:
         series:
@@ -186,149 +329,6 @@ components:
       - freq
       - h
       title: CrossValidationInput
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
-    SeriesWithFutureExogenous:
-      properties:
-        X_future:
-          anyOf:
-          - items:
-              items:
-                anyOf:
-                - type: number
-                - type: string
-              type: array
-            type: array
-          - type: 'null'
-          title: X Future
-          description: Future values of the exogenous features. Each feature must be a list of size number of series times the forecast horizon (h).
-        X:
-          anyOf:
-          - items:
-              items:
-                anyOf:
-                - type: number
-                - type: string
-              type: array
-            type: array
-          - type: 'null'
-          title: X
-          description: Historic values of the exogenous features. Each feature must be a list of the same size as the target (y).
-        categorical_exog:
-          anyOf:
-          - items:
-              type: integer
-              minimum: 0
-            type: array
-          - type: 'null'
-          title: Categorical Exog
-          description: Zero-based indices of the columns in X that are categorical features.
-        y:
-          items:
-            type: number
-          type: array
-          title: Y
-          description: Historic values of the target.
-        sizes:
-          items:
-            type: integer
-          type: array
-          title: Sizes
-          description: Sizes of the individual series.
-      type: object
-      required:
-      - y
-      - sizes
-      title: SeriesWithFutureExogenous
-    CrossValidationOutput:
-      properties:
-        input_tokens:
-          type: integer
-          minimum: 0
-          title: Input Tokens
-        output_tokens:
-          type: integer
-          minimum: 0
-          title: Output Tokens
-        finetune_tokens:
-          type: integer
-          minimum: 0
-          title: Finetune Tokens
-        mean:
-          items:
-            type: number
-          type: array
-          title: Mean
-        sizes:
-          items:
-            type: integer
-          type: array
-          title: Sizes
-        idxs:
-          items:
-            type: integer
-          type: array
-          title: Idxs
-        intervals:
-          anyOf:
-          - additionalProperties:
-              items:
-                type: number
-              type: array
-            type: object
-          - type: 'null'
-          title: Intervals
-        feature_contributions:
-          anyOf:
-          - items:
-              items:
-                type: number
-              type: array
-            type: array
-          - type: 'null'
-          title: Feature Contributions
-      type: object
-      required:
-      - input_tokens
-      - output_tokens
-      - finetune_tokens
-      - mean
-      - sizes
-      - idxs
-      title: CrossValidationOutput
   securitySchemes:
     HTTPBearer:
       type: http
