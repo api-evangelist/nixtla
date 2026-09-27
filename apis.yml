@@ -55,7 +55,7 @@ tags:
 - Time Series
 - Forecasting
 - Anomaly Detection
-- Machine-Learning
+- Machine Learning
 - Artificial Intelligence
 - Foundation Models
 - Predictive Analytics
@@ -70,6 +70,7 @@ tags_raw:
 - Foundation Model
 - Predictive Analytics
 - Data Science
+- Machine-Learning
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -105,7 +106,7 @@ apis:
   - type: APIReference
     url: https://www.nixtla.io/docs/api-reference/foundational-time-series-model-multi-series
 - aid: nixtla:nixtla-excluded-api
-  name: Nixtla excluded API
+  name: Nixtla Excluded API
   description: The excluded API from Nixtla — 1 operation(s) for excluded.
   humanURL: https://www.nixtla.io/docs
   baseURL: https://api.nixtla.io

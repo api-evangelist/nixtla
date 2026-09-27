@@ -83,15 +83,6 @@ paths:
       - Finetune
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     SeriesWithFutureExogenous:
       properties:
         X_future:
@@ -144,57 +135,6 @@ components:
       - y
       - sizes
       title: SeriesWithFutureExogenous
-    FinetuneOutput:
-      properties:
-        input_tokens:
-          type: integer
-          minimum: 0
-          title: Input Tokens
-        output_tokens:
-          type: integer
-          minimum: 0
-          title: Output Tokens
-        finetune_tokens:
-          type: integer
-          minimum: 0
-          title: Finetune Tokens
-        finetuned_model_id:
-          type: string
-          pattern: ^[a-zA-Z0-9\-_]{1,36}$
-          title: Finetuned Model Id
-      type: object
-      required:
-      - input_tokens
-      - output_tokens
-      - finetune_tokens
-      - finetuned_model_id
-      title: FinetuneOutput
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
     FinetuneInput:
       properties:
         series:
@@ -278,6 +218,66 @@ components:
       - series
       - freq
       title: FinetuneInput
+    FinetuneOutput:
+      properties:
+        input_tokens:
+          type: integer
+          minimum: 0
+          title: Input Tokens
+        output_tokens:
+          type: integer
+          minimum: 0
+          title: Output Tokens
+        finetune_tokens:
+          type: integer
+          minimum: 0
+          title: Finetune Tokens
+        finetuned_model_id:
+          type: string
+          pattern: ^[a-zA-Z0-9\-_]{1,36}$
+          title: Finetuned Model Id
+      type: object
+      required:
+      - input_tokens
+      - output_tokens
+      - finetune_tokens
+      - finetuned_model_id
+      title: FinetuneOutput
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http

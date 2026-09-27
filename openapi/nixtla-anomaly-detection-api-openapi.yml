@@ -81,15 +81,6 @@ paths:
       - Anomaly Detection
 components:
   schemas:
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     SeriesWithFutureExogenous:
       properties:
         X_future:
@@ -142,6 +133,69 @@ components:
       - y
       - sizes
       title: SeriesWithFutureExogenous
+    AnomalyDetectionOutput:
+      properties:
+        input_tokens:
+          type: integer
+          minimum: 0
+          title: Input Tokens
+        output_tokens:
+          type: integer
+          minimum: 0
+          title: Output Tokens
+        finetune_tokens:
+          type: integer
+          minimum: 0
+          title: Finetune Tokens
+        mean:
+          items:
+            type: number
+          type: array
+          title: Mean
+        sizes:
+          items:
+            type: integer
+          type: array
+          title: Sizes
+        intervals:
+          anyOf:
+          - additionalProperties:
+              items:
+                type: number
+              type: array
+            type: object
+          - type: 'null'
+          title: Intervals
+        weights_x:
+          anyOf:
+          - items:
+              type: number
+            type: array
+          - type: 'null'
+          title: Weights X
+        feature_contributions:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Feature Contributions
+        anomaly:
+          items:
+            type: boolean
+          type: array
+          title: Anomaly
+      type: object
+      required:
+      - input_tokens
+      - output_tokens
+      - finetune_tokens
+      - mean
+      - sizes
+      - anomaly
+      title: AnomalyDetectionOutput
     AnomalyDetectionInput:
       properties:
         series:
@@ -209,69 +263,15 @@ components:
       - series
       - freq
       title: AnomalyDetectionInput
-    AnomalyDetectionOutput:
+    HTTPValidationError:
       properties:
-        input_tokens:
-          type: integer
-          minimum: 0
-          title: Input Tokens
-        output_tokens:
-          type: integer
-          minimum: 0
-          title: Output Tokens
-        finetune_tokens:
-          type: integer
-          minimum: 0
-          title: Finetune Tokens
-        mean:
+        detail:
           items:
-            type: number
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Mean
-        sizes:
-          items:
-            type: integer
-          type: array
-          title: Sizes
-        intervals:
-          anyOf:
-          - additionalProperties:
-              items:
-                type: number
-              type: array
-            type: object
-          - type: 'null'
-          title: Intervals
-        weights_x:
-          anyOf:
-          - items:
-              type: number
-            type: array
-          - type: 'null'
-          title: Weights X
-        feature_contributions:
-          anyOf:
-          - items:
-              items:
-                type: number
-              type: array
-            type: array
-          - type: 'null'
-          title: Feature Contributions
-        anomaly:
-          items:
-            type: boolean
-          type: array
-          title: Anomaly
+          title: Detail
       type: object
-      required:
-      - input_tokens
-      - output_tokens
-      - finetune_tokens
-      - mean
-      - sizes
-      - anomaly
-      title: AnomalyDetectionOutput
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
