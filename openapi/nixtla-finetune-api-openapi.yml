@@ -83,58 +83,15 @@ paths:
       - Finetune
 components:
   schemas:
-    SeriesWithFutureExogenous:
+    HTTPValidationError:
       properties:
-        X_future:
-          anyOf:
-          - items:
-              items:
-                anyOf:
-                - type: number
-                - type: string
-              type: array
-            type: array
-          - type: 'null'
-          title: X Future
-          description: Future values of the exogenous features. Each feature must be a list of size number of series times the forecast horizon (h).
-        X:
-          anyOf:
-          - items:
-              items:
-                anyOf:
-                - type: number
-                - type: string
-              type: array
-            type: array
-          - type: 'null'
-          title: X
-          description: Historic values of the exogenous features. Each feature must be a list of the same size as the target (y).
-        categorical_exog:
-          anyOf:
-          - items:
-              type: integer
-              minimum: 0
-            type: array
-          - type: 'null'
-          title: Categorical Exog
-          description: Zero-based indices of the columns in X that are categorical features.
-        y:
+        detail:
           items:
-            type: number
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Y
-          description: Historic values of the target.
-        sizes:
-          items:
-            type: integer
-          type: array
-          title: Sizes
-          description: Sizes of the individual series.
+          title: Detail
       type: object
-      required:
-      - y
-      - sizes
-      title: SeriesWithFutureExogenous
+      title: HTTPValidationError
     FinetuneInput:
       properties:
         series:
@@ -243,15 +200,58 @@ components:
       - finetune_tokens
       - finetuned_model_id
       title: FinetuneOutput
-    HTTPValidationError:
+    SeriesWithFutureExogenous:
       properties:
-        detail:
+        X_future:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X Future
+          description: Future values of the exogenous features. Each feature must be a list of size number of series times the forecast horizon (h).
+        X:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X
+          description: Historic values of the exogenous features. Each feature must be a list of the same size as the target (y).
+        categorical_exog:
+          anyOf:
+          - items:
+              type: integer
+              minimum: 0
+            type: array
+          - type: 'null'
+          title: Categorical Exog
+          description: Zero-based indices of the columns in X that are categorical features.
+        y:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            type: number
           type: array
-          title: Detail
+          title: Y
+          description: Historic values of the target.
+        sizes:
+          items:
+            type: integer
+          type: array
+          title: Sizes
+          description: Sizes of the individual series.
       type: object
-      title: HTTPValidationError
+      required:
+      - y
+      - sizes
+      title: SeriesWithFutureExogenous
     ValidationError:
       properties:
         loc:
