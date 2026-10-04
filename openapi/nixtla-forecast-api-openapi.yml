@@ -55,6 +55,32 @@ paths:
       - Forecast
 components:
   schemas:
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError
     HTTPValidationError:
       properties:
         detail:
@@ -64,6 +90,58 @@ components:
           title: Detail
       type: object
       title: HTTPValidationError
+    SeriesWithFutureExogenous:
+      properties:
+        X_future:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X Future
+          description: Future values of the exogenous features. Each feature must be a list of size number of series times the forecast horizon (h).
+        X:
+          anyOf:
+          - items:
+              items:
+                anyOf:
+                - type: number
+                - type: string
+              type: array
+            type: array
+          - type: 'null'
+          title: X
+          description: Historic values of the exogenous features. Each feature must be a list of the same size as the target (y).
+        categorical_exog:
+          anyOf:
+          - items:
+              type: integer
+              minimum: 0
+            type: array
+          - type: 'null'
+          title: Categorical Exog
+          description: Zero-based indices of the columns in X that are categorical features.
+        y:
+          items:
+            type: number
+          type: array
+          title: Y
+          description: Historic values of the target.
+        sizes:
+          items:
+            type: integer
+          type: array
+          title: Sizes
+          description: Sizes of the individual series.
+      type: object
+      required:
+      - y
+      - sizes
+      title: SeriesWithFutureExogenous
     ForecastInput:
       properties:
         series:
@@ -213,84 +291,6 @@ components:
       - finetune_tokens
       - mean
       title: ForecastOutput
-    SeriesWithFutureExogenous:
-      properties:
-        X_future:
-          anyOf:
-          - items:
-              items:
-                anyOf:
-                - type: number
-                - type: string
-              type: array
-            type: array
-          - type: 'null'
-          title: X Future
-          description: Future values of the exogenous features. Each feature must be a list of size number of series times the forecast horizon (h).
-        X:
-          anyOf:
-          - items:
-              items:
-                anyOf:
-                - type: number
-                - type: string
-              type: array
-            type: array
-          - type: 'null'
-          title: X
-          description: Historic values of the exogenous features. Each feature must be a list of the same size as the target (y).
-        categorical_exog:
-          anyOf:
-          - items:
-              type: integer
-              minimum: 0
-            type: array
-          - type: 'null'
-          title: Categorical Exog
-          description: Zero-based indices of the columns in X that are categorical features.
-        y:
-          items:
-            type: number
-          type: array
-          title: Y
-          description: Historic values of the target.
-        sizes:
-          items:
-            type: integer
-          type: array
-          title: Sizes
-          description: Sizes of the individual series.
-      type: object
-      required:
-      - y
-      - sizes
-      title: SeriesWithFutureExogenous
-    ValidationError:
-      properties:
-        loc:
-          items:
-            anyOf:
-            - type: string
-            - type: integer
-          type: array
-          title: Location
-        msg:
-          type: string
-          title: Message
-        type:
-          type: string
-          title: Error Type
-        input:
-          title: Input
-        ctx:
-          type: object
-          title: Context
-      type: object
-      required:
-      - loc
-      - msg
-      - type
-      title: ValidationError
   securitySchemes:
     HTTPBearer:
       type: http

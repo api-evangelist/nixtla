@@ -81,15 +81,17 @@ paths:
       - Finetuned Models
 components:
   schemas:
-    HTTPValidationError:
+    FinetunedModelsOutput:
       properties:
-        detail:
+        finetuned_models:
           items:
-            $ref: '#/components/schemas/ValidationError'
+            $ref: '#/components/schemas/FinetunedModel'
           type: array
-          title: Detail
+          title: Finetuned Models
       type: object
-      title: HTTPValidationError
+      required:
+      - finetuned_models
+      title: FinetunedModelsOutput
     ValidationError:
       properties:
         loc:
@@ -116,17 +118,15 @@ components:
       - msg
       - type
       title: ValidationError
-    FinetunedModelsOutput:
+    HTTPValidationError:
       properties:
-        finetuned_models:
+        detail:
           items:
-            $ref: '#/components/schemas/FinetunedModel'
+            $ref: '#/components/schemas/ValidationError'
           type: array
-          title: Finetuned Models
+          title: Detail
       type: object
-      required:
-      - finetuned_models
-      title: FinetunedModelsOutput
+      title: HTTPValidationError
     FinetunedModel:
       properties:
         id:
