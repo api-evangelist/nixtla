@@ -193,6 +193,9 @@ apis:
   - type: APIReference
     url: https://www.nixtla.io/docs/api-reference/foundational-time-series-model-multi-series
 common:
+- type: CapabilityMap
+  url: capabilities/nixtla-capability-edges.yml
+  name: Nixtla Business Capability Map
 - type: Overlay
   url: overlays/nixtla-forecast-overlay.yaml
 - type: DeveloperPortal

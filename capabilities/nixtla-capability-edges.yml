@@ -1,0 +1,33 @@
+slug: nixtla
+provider: Nixtla
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Finetune
+  spec_file: nixtla-finetune-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.8
+  evidence: POST /v2/finetune — "Foundational Time Series Model Multi Series Finetuning"
+  reason: Fine-tuning a foundation model on customer data is plainly AI/ML model lifecycle work (training/MLOps),
+    so Artificial Intelligence Management applies.
+- tag: Finetuned Models
+  spec_file: nixtla-finetuned-models-api-openapi.yml
+  capability_id: BC-610.60
+  capability_id_l1: BC-610
+  capability_name: Artificial Intelligence Management
+  confidence: 0.8
+  evidence: '"List Fine-tuned Models", "Get single Fine-tuned Model", "Delete Fine-tuned Model"'
+  reason: CRUD over fine-tuned model artefacts is model registry / lifecycle management, which is the
+    substance of AI/ML management.
