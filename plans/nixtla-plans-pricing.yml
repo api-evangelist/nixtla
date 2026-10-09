@@ -1,0 +1,24 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-10-07'
+method: searched
+source: https://www.nixtla.io/docs/introduction/timegpt_subscription_plans
+sources:
+- https://www.nixtla.io/docs/introduction/timegpt_subscription_plans
+provenance:
+  tool: all/0-working/economics/harvest_pricing.py
+  run: 20261007T104522
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: negotiated
+delivery:
+  delivery: managed+licensed
+  method: page
+  read: '2026-10-07'
+  evidence: Self-Hosted Deployment
+published: false
+note: No numeric price is published on the pricing page; Page describes Enterprise subscription plans
+  (API, Azure cloud deployment, self-hosted) with customizable API call limits, seats and support, but
+  states no numeric prices — directs users to contact support@nixtla.io or schedule a demo. Only quantity
+  mentioned is a '30-day free trial with no credit card required'.
+plan_count: 0
+plans: []
