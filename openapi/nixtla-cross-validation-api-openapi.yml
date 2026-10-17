@@ -56,6 +56,15 @@ paths:
       - Cross Validation
 components:
   schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
     ValidationError:
       properties:
         loc:
@@ -82,71 +91,6 @@ components:
       - msg
       - type
       title: ValidationError
-    CrossValidationOutput:
-      properties:
-        input_tokens:
-          type: integer
-          minimum: 0
-          title: Input Tokens
-        output_tokens:
-          type: integer
-          minimum: 0
-          title: Output Tokens
-        finetune_tokens:
-          type: integer
-          minimum: 0
-          title: Finetune Tokens
-        mean:
-          items:
-            type: number
-          type: array
-          title: Mean
-        sizes:
-          items:
-            type: integer
-          type: array
-          title: Sizes
-        idxs:
-          items:
-            type: integer
-          type: array
-          title: Idxs
-        intervals:
-          anyOf:
-          - additionalProperties:
-              items:
-                type: number
-              type: array
-            type: object
-          - type: 'null'
-          title: Intervals
-        feature_contributions:
-          anyOf:
-          - items:
-              items:
-                type: number
-              type: array
-            type: array
-          - type: 'null'
-          title: Feature Contributions
-      type: object
-      required:
-      - input_tokens
-      - output_tokens
-      - finetune_tokens
-      - mean
-      - sizes
-      - idxs
-      title: CrossValidationOutput
-    HTTPValidationError:
-      properties:
-        detail:
-          items:
-            $ref: '#/components/schemas/ValidationError'
-          type: array
-          title: Detail
-      type: object
-      title: HTTPValidationError
     SeriesWithFutureExogenous:
       properties:
         X_future:
@@ -329,6 +273,62 @@ components:
       - freq
       - h
       title: CrossValidationInput
+    CrossValidationOutput:
+      properties:
+        input_tokens:
+          type: integer
+          minimum: 0
+          title: Input Tokens
+        output_tokens:
+          type: integer
+          minimum: 0
+          title: Output Tokens
+        finetune_tokens:
+          type: integer
+          minimum: 0
+          title: Finetune Tokens
+        mean:
+          items:
+            type: number
+          type: array
+          title: Mean
+        sizes:
+          items:
+            type: integer
+          type: array
+          title: Sizes
+        idxs:
+          items:
+            type: integer
+          type: array
+          title: Idxs
+        intervals:
+          anyOf:
+          - additionalProperties:
+              items:
+                type: number
+              type: array
+            type: object
+          - type: 'null'
+          title: Intervals
+        feature_contributions:
+          anyOf:
+          - items:
+              items:
+                type: number
+              type: array
+            type: array
+          - type: 'null'
+          title: Feature Contributions
+      type: object
+      required:
+      - input_tokens
+      - output_tokens
+      - finetune_tokens
+      - mean
+      - sizes
+      - idxs
+      title: CrossValidationOutput
   securitySchemes:
     HTTPBearer:
       type: http
