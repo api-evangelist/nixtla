@@ -46,3 +46,33 @@
     detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
+- slug: nixtla-cran
+  label: CRAN
+  partner_name: CRAN
+  category: official SDK (R)
+  type: register
+  channel: package-registry
+  evidence: https://cran.r-project.org/package=nixtlar
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: CRAN (packages.rds, the public package metadata table)
+    spec_file: null
+    language: R
+    packages:
+    - name: nixtlar
+      version: 1.0.0
+      title: A Software Development Kit for 'Nixtla''s 'TimeGPT'
+      released: '2026-06-23'
+      released_field: Published
+      lapsed: false
+      page: https://cran.r-project.org/package=nixtlar
+      repo_leg: domain:nixtla.io
+      publisher_leg: email:nixtla.io
+      matched_by: domain
+    current: true
+    signal_note: 'an official R package on CRAN: distribution, not an integration; lapsed = no release in 24 months'
+    detected_by: sweep-cran-r-packages.py
+    detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
